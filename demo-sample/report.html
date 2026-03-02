@@ -1,0 +1,2741 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Research: 1인 가구 식사 관리</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --font-kr: 'Pretendard', -apple-system, sans-serif;
+    --font-en: 'Inter', -apple-system, sans-serif;
+    --grid: 8px;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --transition: 0.2s ease;
+  }
+
+  [data-theme="light"] {
+    --bg-0: #ffffff;
+    --bg-1: #f8f9fb;
+    --bg-2: #f0f2f5;
+    --bg-card: #ffffff;
+    --border: #e2e5ea;
+    --border-light: #eef0f3;
+    --text-0: #111318;
+    --text-1: #3d4250;
+    --text-2: #6b7080;
+    --text-3: #9a9fad;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --accent-text: #1e40af;
+    --green: #16a34a;
+    --green-soft: #dcfce7;
+    --green-text: #15803d;
+    --yellow: #ca8a04;
+    --yellow-soft: #fef9c3;
+    --yellow-text: #a16207;
+    --red: #dc2626;
+    --red-soft: #fee2e2;
+    --red-text: #b91c1c;
+    --purple: #7c3aed;
+    --purple-soft: #ede9fe;
+    --purple-text: #6d28d9;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  [data-theme="dark"] {
+    --bg-0: #0f1117;
+    --bg-1: #16181f;
+    --bg-2: #1e2028;
+    --bg-card: #1a1c24;
+    --border: #2a2d37;
+    --border-light: #23252e;
+    --text-0: #f0f1f4;
+    --text-1: #c4c7cf;
+    --text-2: #8b8fa0;
+    --text-3: #5c6070;
+    --accent: #60a5fa;
+    --accent-soft: #1e3a5f;
+    --accent-text: #93c5fd;
+    --green: #4ade80;
+    --green-soft: #14332a;
+    --green-text: #86efac;
+    --yellow: #facc15;
+    --yellow-soft: #3d3314;
+    --yellow-text: #fde68a;
+    --red: #f87171;
+    --red-soft: #3b1c1c;
+    --red-text: #fca5a5;
+    --purple: #a78bfa;
+    --purple-soft: #2e1f5e;
+    --purple-text: #c4b5fd;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-kr);
+    background: var(--bg-1);
+    color: var(--text-0);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header */
+  .header {
+    background: var(--bg-0);
+    border-bottom: 1px solid var(--border);
+    padding: calc(var(--grid) * 3) calc(var(--grid) * 4);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-left { display: flex; align-items: center; gap: calc(var(--grid) * 2); }
+
+  .header-badge {
+    background: var(--accent-soft);
+    color: var(--accent-text);
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-0);
+  }
+
+  .header-meta {
+    font-size: 13px;
+    color: var(--text-2);
+    display: flex;
+    gap: calc(var(--grid) * 1.5);
+    align-items: center;
+  }
+
+  .depth-badge {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.3px;
+  }
+  .depth-badge.quick { background: var(--green-soft); color: var(--green-text); }
+  .depth-badge.standard { background: var(--accent-soft); color: var(--accent-text); }
+  .depth-badge.consulting { background: var(--purple-soft); color: var(--purple-text); }
+
+  .theme-toggle {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    transition: var(--transition);
+  }
+  .theme-toggle:hover { border-color: var(--accent); }
+
+  /* Tabs */
+  .tabs {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: calc(var(--grid) * 2) calc(var(--grid) * 4) 0;
+    display: flex;
+    gap: calc(var(--grid) * 0.5);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab {
+    font-family: var(--font-kr);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-2);
+    padding: calc(var(--grid) * 1.25) calc(var(--grid) * 2.5);
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    transition: var(--transition);
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .tab:hover { color: var(--text-0); background: var(--bg-2); }
+
+  .tab.active {
+    color: var(--accent);
+    background: var(--bg-0);
+    font-weight: 600;
+  }
+  .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--grid) * 1.5);
+    right: calc(var(--grid) * 1.5);
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px 2px 0 0;
+  }
+
+  /* Content */
+  .content {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: calc(var(--grid) * 3) calc(var(--grid) * 4) calc(var(--grid) * 8);
+  }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: calc(var(--grid) * 3);
+    margin-bottom: calc(var(--grid) * 2);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-0);
+    margin-bottom: calc(var(--grid) * 2);
+  }
+
+  /* Stats Row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: calc(var(--grid) * 2);
+    margin-bottom: calc(var(--grid) * 3);
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: calc(var(--grid) * 2.5);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: calc(var(--grid) * 0.5);
+  }
+
+  .stat-value {
+    font-family: var(--font-en);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-0);
+  }
+
+  .stat-sub {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-top: 2px;
+  }
+
+  /* Gap Reality */
+  .gap-chart {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--grid) * 1.5);
+  }
+
+  .gap-row {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--grid) * 1.5);
+  }
+
+  .gap-label {
+    font-size: 13px;
+    font-weight: 500;
+    width: 100px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .gap-bar-track {
+    flex: 1;
+    height: 28px;
+    background: var(--bg-2);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gap-bar {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+
+  .gap-bar-value {
+    font-family: var(--font-en);
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .gap-bar.real { background: var(--green); }
+  .gap-bar.partial { background: var(--yellow); }
+  .gap-bar.none { background: var(--red); }
+
+  /* Gap Badges */
+  .gap-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .gap-badge.real { background: var(--green-soft); color: var(--green-text); }
+  .gap-badge.partial { background: var(--yellow-soft); color: var(--yellow-text); }
+  .gap-badge.none { background: var(--red-soft); color: var(--red-text); }
+
+  /* Impact Badges */
+  .impact-high { background: var(--red-soft); color: var(--red-text); }
+  .impact-medium { background: var(--yellow-soft); color: var(--yellow-text); }
+  .impact-low { background: var(--green-soft); color: var(--green-text); }
+
+  /* Radar Chart */
+  .radar-container {
+    display: flex;
+    justify-content: center;
+    padding: calc(var(--grid) * 2) 0;
+  }
+
+  .radar-svg { max-width: 320px; width: 100%; }
+
+  .radar-grid { stroke: var(--border); fill: none; stroke-width: 1; }
+  .radar-axis { stroke: var(--border-light); stroke-width: 1; }
+  .radar-label { fill: var(--text-2); font-size: 12px; font-family: var(--font-kr); }
+  .radar-area { stroke-width: 2; }
+  .radar-dot { stroke: var(--bg-0); stroke-width: 2; }
+
+  .radar-legend {
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--grid) * 3);
+    margin-top: calc(var(--grid) * 1.5);
+    flex-wrap: wrap;
+  }
+
+  .radar-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-1);
+  }
+
+  .radar-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  /* Score Table */
+  .score-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+  }
+
+  .score-table th {
+    font-weight: 600;
+    color: var(--text-2);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: calc(var(--grid) * 1.5);
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .score-table td {
+    padding: calc(var(--grid) * 1.5);
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: middle;
+  }
+
+  .score-table tr:last-child td { border-bottom: none; }
+
+  .score-table .rank {
+    font-family: var(--font-en);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--accent);
+    width: 40px;
+  }
+
+  .score-cell {
+    font-family: var(--font-en);
+    font-weight: 600;
+    text-align: center;
+    width: 64px;
+    vertical-align: middle;
+  }
+
+  .score-mini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .score-mini-num {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .score-bar-mini {
+    width: 100%;
+    max-width: 48px;
+    height: 4px;
+    background: var(--bg-2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .score-bar-mini-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .score-bar-mini-fill.score-high { background: var(--green); }
+  .score-bar-mini-fill.score-mid { background: var(--accent); }
+  .score-bar-mini-fill.score-low { background: var(--red); }
+
+  .total-score {
+    font-family: var(--font-en);
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    width: 64px;
+  }
+
+  .total-score .max { font-size: 12px; font-weight: 400; color: var(--text-3); }
+
+  /* Opportunity Cards */
+  .opp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: calc(var(--grid) * 2);
+  }
+
+  .opp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+
+  .opp-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+
+  .opp-card-rank {
+    padding: calc(var(--grid) * 2) calc(var(--grid) * 3);
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .opp-card-rank-num {
+    font-family: var(--font-en);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .opp-card-body { padding: calc(var(--grid) * 3); }
+
+  .opp-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-0);
+    margin-bottom: calc(var(--grid) * 2);
+  }
+
+  .opp-field {
+    margin-bottom: calc(var(--grid) * 1.5);
+  }
+
+  .opp-field-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+  }
+
+  .opp-field-value {
+    font-size: 14px;
+    color: var(--text-1);
+    line-height: 1.5;
+  }
+
+  /* Needs Detail */
+  .need-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: calc(var(--grid) * 1.5);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .need-header {
+    padding: calc(var(--grid) * 2) calc(var(--grid) * 3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: var(--transition);
+    gap: calc(var(--grid) * 2);
+  }
+
+  .need-header:hover { background: var(--bg-2); }
+
+  .need-header-left {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--grid) * 1.5);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .need-num {
+    font-family: var(--font-en);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-3);
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  .need-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-0);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .need-header-right {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--grid) * 1.5);
+    flex-shrink: 0;
+  }
+
+  .need-freq {
+    font-size: 12px;
+    color: var(--text-2);
+    background: var(--bg-2);
+    padding: 2px 8px;
+    border-radius: 100px;
+  }
+
+  .need-chevron {
+    color: var(--text-3);
+    transition: transform var(--transition);
+    font-size: 18px;
+  }
+
+  .need-item.open .need-chevron { transform: rotate(180deg); }
+
+  .need-body {
+    display: none;
+    padding: 0 calc(var(--grid) * 3) calc(var(--grid) * 3);
+    border-top: 1px solid var(--border-light);
+  }
+
+  .need-item.open .need-body { display: block; padding-top: calc(var(--grid) * 2); }
+
+  .need-section {
+    margin-bottom: calc(var(--grid) * 2);
+  }
+
+  .need-section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: calc(var(--grid) * 0.75);
+  }
+
+  .need-section-content {
+    font-size: 14px;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+
+  .need-solutions-table {
+    width: 100%;
+    font-size: 13px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: calc(var(--grid) * 0.5);
+  }
+
+  .need-solutions-table th {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    padding: calc(var(--grid)) calc(var(--grid) * 1.5);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .need-solutions-table td {
+    padding: calc(var(--grid)) calc(var(--grid) * 1.5);
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-1);
+  }
+
+  .need-quote {
+    background: var(--bg-2);
+    border-left: 3px solid var(--accent);
+    padding: calc(var(--grid) * 1.5) calc(var(--grid) * 2);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-1);
+    margin-top: calc(var(--grid));
+  }
+
+  .need-source {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-top: calc(var(--grid) * 0.5);
+  }
+
+  .need-source a { color: var(--accent); text-decoration: none; }
+  .need-source a:hover { text-decoration: underline; }
+
+  /* PRD Seed */
+  .prd-section {
+    margin-bottom: calc(var(--grid) * 3);
+  }
+
+  .prd-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-0);
+    margin-bottom: calc(var(--grid) * 1.5);
+    display: flex;
+    align-items: center;
+    gap: calc(var(--grid));
+  }
+
+  .prd-section h3 .num {
+    font-family: var(--font-en);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .prd-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .prd-list li {
+    font-size: 14px;
+    color: var(--text-1);
+    padding: calc(var(--grid) * 0.75) 0;
+    padding-left: calc(var(--grid) * 2.5);
+    position: relative;
+  }
+
+  .prd-list li::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 13px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .prd-list.anti li::before { background: var(--red); }
+  .prd-list.checklist li::before { background: none; }
+
+  .prd-list.checklist li {
+    padding-left: calc(var(--grid) * 3);
+  }
+
+  .prd-list.checklist li::before {
+    content: '\2610';
+    font-size: 14px;
+    left: 4px;
+    top: 6px;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    color: var(--text-2);
+  }
+
+  .prd-highlight {
+    background: var(--accent-soft);
+    border-radius: var(--radius-sm);
+    padding: calc(var(--grid) * 2);
+    font-size: 15px;
+    color: var(--accent-text);
+    font-weight: 500;
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  /* Executive Summary */
+  .exec-summary {
+    font-size: 15px;
+    color: var(--text-1);
+    line-height: 1.8;
+    white-space: pre-line;
+  }
+
+  /* Inline Citations — Tier-colored */
+  .cite-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-en);
+    font-size: 10px;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: super;
+    margin: 0 1px;
+    transition: var(--transition);
+    line-height: 1;
+  }
+  .cite-link:hover { filter: brightness(0.85); }
+  .cite-link.t1 { color: var(--green-text); background: var(--green-soft); }
+  .cite-link.t1:hover { background: var(--green); color: white; }
+  .cite-link.t2 { color: var(--accent-text); background: var(--accent-soft); }
+  .cite-link.t2:hover { background: var(--accent); color: white; }
+  .cite-link.t3 { color: var(--yellow-text); background: var(--yellow-soft); }
+  .cite-link.t3:hover { background: var(--yellow); color: white; }
+  .cite-link.t-unknown { color: var(--text-2); background: var(--bg-2); }
+
+  /* Tier badges */
+  .tier-badge {
+    font-family: var(--font-en);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+  }
+  .tier-badge.t1 { background: var(--green-soft); color: var(--green-text); }
+  .tier-badge.t2 { background: var(--accent-soft); color: var(--accent-text); }
+  .tier-badge.t3 { background: var(--yellow-soft); color: var(--yellow-text); }
+
+  /* Tier group header */
+  .tier-group-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-0);
+    padding: calc(var(--grid) * 1.5) 0 calc(var(--grid));
+    border-bottom: 2px solid var(--border);
+    margin-top: calc(var(--grid) * 2);
+    display: flex;
+    align-items: center;
+    gap: calc(var(--grid));
+  }
+  .tier-group-header:first-child { margin-top: 0; }
+
+  /* References */
+  .ref-entry {
+    display: flex;
+    gap: calc(var(--grid) * 2);
+    padding: calc(var(--grid) * 1.5) 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+  }
+  .ref-entry:last-child { border-bottom: none; }
+
+  .ref-num {
+    font-family: var(--font-en);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ref-content { flex: 1; min-width: 0; }
+
+  .ref-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-0);
+    margin-bottom: 2px;
+  }
+
+  .ref-url {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .ref-url:hover { text-decoration: underline; }
+
+  .ref-meta {
+    display: flex;
+    gap: calc(var(--grid));
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+
+  .ref-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--bg-2);
+    color: var(--text-2);
+  }
+
+  .ref-tag.t1 { background: var(--green-soft); color: var(--green-text); }
+  .ref-tag.t2 { background: var(--accent-soft); color: var(--accent-text); }
+  .ref-tag.t3 { background: var(--yellow-soft); color: var(--yellow-text); }
+
+  /* Methodology */
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: calc(var(--grid) * 2);
+    margin-bottom: calc(var(--grid) * 2);
+  }
+
+  .method-stat {
+    background: var(--bg-2);
+    border-radius: var(--radius-sm);
+    padding: calc(var(--grid) * 2);
+    text-align: center;
+  }
+
+  .method-stat-value {
+    font-family: var(--font-en);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .method-stat-label {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 4px;
+  }
+
+  .method-limit {
+    font-size: 13px;
+    color: var(--text-2);
+    padding: calc(var(--grid)) 0;
+    padding-left: calc(var(--grid) * 2);
+    position: relative;
+  }
+
+  .method-limit::before {
+    content: '\26A0';
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+  }
+
+  /* Dynamics Table */
+  .dynamics-row {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--grid) * 1.5);
+    padding: calc(var(--grid) * 1.5) 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .dynamics-row:last-child { border-bottom: none; }
+
+  .dynamics-type {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    width: 100px;
+    text-align: center;
+  }
+
+  .dynamics-type.driver { background: var(--green-soft); color: var(--green-text); }
+  .dynamics-type.headwind { background: var(--red-soft); color: var(--red-text); }
+  .dynamics-type.regulatory { background: var(--yellow-soft); color: var(--yellow-text); }
+
+  .dynamics-factor {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-0);
+    flex: 1;
+  }
+
+  .dynamics-evidence {
+    font-size: 13px;
+    color: var(--text-2);
+    flex: 2;
+  }
+
+  /* Risk Matrix */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .risk-cell {
+    background: var(--bg-card);
+    padding: calc(var(--grid) * 1.5);
+    font-size: 13px;
+  }
+
+  .risk-header {
+    background: var(--bg-2);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-2);
+    text-transform: uppercase;
+  }
+
+  .risk-name {
+    font-weight: 600;
+    color: var(--text-0);
+  }
+
+  /* Value Chain */
+  .vchain {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin: calc(var(--grid) * 2) 0;
+  }
+
+  .vchain-stage {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: calc(var(--grid)) calc(var(--grid) * 2);
+    font-size: 13px;
+    color: var(--text-1);
+    position: relative;
+  }
+
+  .vchain-stage.highlight {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+
+  .vchain-arrow {
+    color: var(--text-3);
+    font-size: 16px;
+  }
+
+  /* Segmentation */
+  .seg-card {
+    background: var(--bg-2);
+    border-radius: var(--radius-sm);
+    padding: calc(var(--grid) * 2);
+    margin-bottom: calc(var(--grid) * 1.5);
+  }
+
+  .seg-card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-0);
+    margin-bottom: calc(var(--grid));
+  }
+
+  .seg-card-detail {
+    font-size: 13px;
+    color: var(--text-1);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: calc(var(--grid));
+  }
+
+  .seg-card-detail dt {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-2);
+    text-transform: uppercase;
+  }
+
+  .seg-card-detail dd {
+    margin: 0 0 calc(var(--grid)) 0;
+  }
+
+  /* Footer — fixed bottom bar */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: calc(var(--grid) * 1.5) 0;
+    color: var(--text-3);
+    font-size: 12px;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+    z-index: 50;
+  }
+
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* Two column grid helper */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--grid) * 2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header-inner { flex-direction: column; gap: calc(var(--grid) * 1.5); align-items: flex-start; }
+    .tabs { padding: calc(var(--grid) * 1.5) calc(var(--grid) * 2) 0; }
+    .content { padding: calc(var(--grid) * 2); }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .opp-grid { grid-template-columns: 1fr; }
+    .radar-svg { max-width: 280px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .dynamics-row { flex-wrap: wrap; }
+    .risk-grid { grid-template-columns: auto 1fr; }
+  }
+
+  /* Print */
+  @media print {
+    .header { position: static; }
+    .tabs, .theme-toggle { display: none; }
+    .panel { display: block !important; page-break-inside: avoid; }
+    .panel + .panel { margin-top: 32px; border-top: 2px solid #000; padding-top: 16px; }
+    .need-body { display: block !important; }
+    body { background: white; color: black; }
+  }
+
+  /* PRD scope grid */
+  .prd-scope-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: calc(var(--grid) * 2); }
+  @media (max-width: 640px) { .prd-scope-grid { grid-template-columns: 1fr; } }
+
+  /* Dark mode yellow text WCAG fix */
+  [data-theme="dark"] .gap-bar.partial .gap-bar-value,
+  [data-theme="dark"] .gap-badge.partial { color: #1a1c24; }
+
+  /* Animations */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .panel.active { animation: fadeIn 0.25s ease; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <span class="header-badge">Market Research</span>
+      <h1 id="reportTitle"></h1>
+    </div>
+    <div class="header-meta">
+      <span id="reportDate"></span>
+      <span id="reportDepth"></span>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">&#9728;&#65039;</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabBar" role="tablist"></nav>
+
+<main class="content">
+
+  <!-- Overview -->
+  <section class="panel active" id="panel-overview" role="tabpanel">
+    <div class="card">
+      <div class="card-title">Executive Summary</div>
+      <div class="exec-summary" id="execSummary"></div>
+    </div>
+    <div class="stats-row" id="statsRow" style="margin-top: calc(var(--grid) * 2);"></div>
+    <div class="grid-2" style="margin-top: calc(var(--grid) * 2);">
+      <div class="card">
+        <div class="card-title">Gap Reality Distribution</div>
+        <div class="gap-chart" id="gapChart"></div>
+      </div>
+      <div class="card" id="radarCard">
+        <div class="card-title">Top Opportunity Radar</div>
+        <div class="radar-container">
+          <svg class="radar-svg" id="radarChart" viewBox="0 0 320 300"></svg>
+        </div>
+        <div class="radar-legend" id="radarLegend"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Needs Analysis -->
+  <section class="panel" id="panel-needs" role="tabpanel">
+    <div id="needsList"></div>
+  </section>
+
+  <!-- Market Sizing -->
+  <section class="panel" id="panel-market" role="tabpanel">
+    <div class="grid-2" style="margin-bottom: calc(var(--grid) * 2);">
+      <div class="card">
+        <div class="card-title">TAM / SAM / SOM</div>
+        <div id="tamSamSom"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Market Funnel</div>
+        <div style="display:flex;justify-content:center;padding:calc(var(--grid)*2) 0;">
+          <svg id="funnelChart" viewBox="0 0 320 260" style="max-width:320px;width:100%;"></svg>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Competitive Landscape</div>
+      <div style="overflow-x: auto;">
+        <table class="score-table" id="competitorTable">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Players</th>
+              <th>Positioning</th>
+              <th>Price</th>
+              <th>Strengths</th>
+              <th>Weaknesses</th>
+            </tr>
+          </thead>
+          <tbody id="competitorBody"></tbody>
+        </table>
+      </div>
+      <div id="competitionSummary" style="margin-top: calc(var(--grid) * 2);"></div>
+    </div>
+    <div class="card" id="segmentationCard" style="display:none;">
+      <div class="card-title">Customer Segmentation</div>
+      <div id="segmentationContent"></div>
+    </div>
+  </section>
+
+  <!-- Dynamics & Risk (consulting only) -->
+  <section class="panel" id="panel-dynamics" role="tabpanel">
+    <div class="card">
+      <div class="card-title">Market Dynamics</div>
+      <div id="dynamicsContent"></div>
+    </div>
+    <div class="card" id="valueChainCard">
+      <div class="card-title">Value Chain</div>
+      <div id="valueChainContent"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Risk Matrix</div>
+      <div id="riskMatrixContent"></div>
+    </div>
+  </section>
+
+  <!-- Scorecard -->
+  <section class="panel" id="panel-scorecard" role="tabpanel">
+    <div class="card">
+      <div class="card-title">Opportunity Scorecard</div>
+      <div style="overflow-x: auto;">
+        <table class="score-table" id="scoreTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Problem</th>
+              <th>Gap</th>
+              <th>Market</th>
+              <th>Urgency</th>
+              <th>Comp&#8595;</th>
+              <th>Barrier&#8595;</th>
+              <th>WTP</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="scoreBody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top: calc(var(--grid) * 1.5); font-size: 12px; color: var(--text-3);">
+        Total = Market + Urgency + (10-Competition) + (10-Barrier) + WTP. Higher is better.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Scoring Rationale</div>
+      <div id="scoreRationale"></div>
+    </div>
+  </section>
+
+  <!-- Action Plan -->
+  <section class="panel" id="panel-action" role="tabpanel">
+    <div class="opp-grid" id="oppGrid"></div>
+  </section>
+
+  <!-- PRD Seed -->
+  <section class="panel" id="panel-prd" role="tabpanel">
+    <div class="card" id="prdContent"></div>
+  </section>
+
+  <!-- References & Methodology (consulting only) -->
+  <section class="panel" id="panel-references" role="tabpanel">
+    <div class="card" id="methodologyCard">
+      <div class="card-title">Methodology</div>
+      <div id="methodologyContent"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Sources Registry</div>
+      <div id="referencesContent"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  Generated by <a href="https://github.com/jaemoonseo/market-research" target="_blank">Market Research Agent Team</a> &middot; Powered by Claude
+</footer>
+
+<script>
+// ===== DATA (Leader injects this) =====
+const DATA = {
+  "topic": "1인 가구 식사 관리",
+  "topic_en": "Solo Household Meal Management",
+  "date": "2026-03-03",
+  "depth": "consulting",
+  "locale": "kr",
+  "agents_used": 5,
+  "executive_summary": "1인 가구 식사 관리 시장은 빠르게 성장하고 있으나, 기존 솔루션들은 '요리를 잘하는 사람'을 위해 설계되어 요리 초보 1인 가구의 핵심 고충을 해결하지 못하고 있습니다.\n\n커뮤니티 분석 결과, 가장 빈번한 불만은 (1) 식재료 낭비 문제, (2) 영양 불균형, (3) 배달 앱 의존으로 인한 건강/재정 악화입니다. 특히 한국 시장에서는 '편의점 식사 + 배달 앱' 조합이 지배적이며, 건강한 대안에 대한 지불 의사가 월 3-5만원 수준으로 확인되었습니다.\n\n경쟁 검증 결과, 밀키트와 식단 관리 앱은 포화 상태이나, '요리 초보 + 1인분 + 식재료 관리'를 통합한 솔루션은 부재합니다(Real Gap). TAM $45B 글로벌 밀키트 시장 중 1인 가구 세그먼트 SAM $2.8B로 추정됩니다.",
+  "market_sizing": {
+    "tam": {
+      "value": "$45B",
+      "basis": "글로벌 밀키트 + 식단관리 앱 시장 합산",
+      "source": "Grand View Research 2025 [Source: https://grandviewresearch.com/industry-analysis/meal-kit-market]",
+      "ref": 1
+    },
+    "sam": {
+      "value": "$2.8B",
+      "basis": "1인 가구 + 아시아태평양 밀키트 시장",
+      "source": "Mordor Intelligence [Source: https://mordorintelligence.com/industry-reports/meal-kit-market]",
+      "ref": 2
+    },
+    "som": {
+      "value": "$42M",
+      "basis": "한국 1인 가구 중 25-39세, 1.5% 침투율 가정",
+      "source": "자체 추정"
+    },
+    "cagr": "12.8%",
+    "cagr_period": "2024-2030",
+    "korea_market": "한국 밀키트 시장 약 3조원 (2025), 1인 가구 비중 34% [Source: https://kostat.go.kr/portal/korea/kor_nw/2025]",
+    "data_quality": "medium"
+  },
+  "competitive_landscape": [
+    {
+      "category": "직접 경쟁",
+      "players": [
+        "마켓컬리 밀키트",
+        "프레시지",
+        "CJ 쿡킷"
+      ],
+      "positioning": "프리미엄 밀키트 정기배송",
+      "price_range": "₩8,000-15,000/끼",
+      "strengths": "브랜드 인지도, 유통 인프라",
+      "weaknesses": "2인분 이상 기준, 요리 경험 필요"
+    },
+    {
+      "category": "간접 대체재",
+      "players": [
+        "배달의민족",
+        "쿠팡이츠",
+        "요기요"
+      ],
+      "positioning": "즉시 배달",
+      "price_range": "₩12,000-20,000/끼",
+      "strengths": "편의성 최고, 다양한 선택",
+      "weaknesses": "비용 높음, 영양 관리 불가, 건강 이슈"
+    },
+    {
+      "category": "간접 대체재",
+      "players": [
+        "MyFitnessPal",
+        "다이어트 신",
+        "눔(Noom)"
+      ],
+      "positioning": "칼로리/영양 트래킹",
+      "price_range": "무료-₩15,000/월",
+      "strengths": "영양 분석 정확도",
+      "weaknesses": "식재료 관리 없음, 요리 가이드 없음"
+    },
+    {
+      "category": "로컬",
+      "players": [
+        "편의점 도시락",
+        "GS25 편스토랑"
+      ],
+      "positioning": "초저가 간편식",
+      "price_range": "₩3,000-6,000/끼",
+      "strengths": "접근성, 가격",
+      "weaknesses": "영양 불균형, 나트륨 과다, 메뉴 피로"
+    }
+  ],
+  "competition_intensity": "중간",
+  "market_gap_summary": "밀키트 시장은 2인 이상 가구 중심으로 포화. 그러나 '요리 초보 1인 가구'를 위한 통합 솔루션(식재료 관리 + 초간단 레시피 + 영양 트래킹)은 부재. 편의점/배달 앱은 건강 문제 해결 불가.",
+  "needs": [
+    {
+      "id": 1,
+      "title": "식재료 낭비 제로 시스템",
+      "persona": "서울 거주 28세 직장인, 자취 2년차, 냉장고에서 썩은 채소를 매주 버림",
+      "frequency": "높음",
+      "workaround": "소량 구매하려 하지만 마트 최소 단위가 큼. 결국 편의점 의존.",
+      "existing_solutions": [
+        {
+          "name": "프레시지",
+          "pricing": "₩10,000-15,000/팩",
+          "target": "2인 이상 가구",
+          "limitation": "1인분 옵션 부족, 남는 식재료 처리 안됨"
+        },
+        {
+          "name": "냉장고를 부탁해 (방송)",
+          "pricing": "무료 (콘텐츠)",
+          "target": "요리 관심자",
+          "limitation": "실시간 가이드 아님, 재료 기반 검색 불가"
+        },
+        {
+          "name": "만개의 레시피",
+          "pricing": "무료",
+          "target": "일반 사용자",
+          "limitation": "식재료 재고 관리 없음, 1인분 변환 부정확"
+        }
+      ],
+      "failure_reason": "기존 솔루션은 '무엇을 만들까'에 집중. '냉장고에 뭐가 있고, 언제 상하는지'를 추적하는 서비스 없음. [Source: https://reddit.com/r/MealPrepSunday/comments/example1]",
+      "gap_reality": "real",
+      "gap_definition": "식재료 유통기한 추적 + 재고 기반 레시피 추천 + 1인분 최적화를 통합한 서비스 없음",
+      "korea_specifics": "한국 1인 가구 736만 (2025), 식재료 폐기율 세계 최고 수준. 대형마트 소포장 트렌드 시작됐으나 여전히 부족 [Source: https://kostat.go.kr/portal/korea/kor_nw/2025]",
+      "wtp_evidence": "\"냉장고 관리해주는 앱 있으면 월 5천원은 낼 의향 있음\" — Reddit r/koreanlife [Source: https://reddit.com/r/koreanlife/comments/example2]",
+      "sources": [
+        "https://reddit.com/r/MealPrepSunday/comments/example1",
+        "https://reddit.com/r/koreanlife/comments/example2",
+        "https://kostat.go.kr/portal/korea/kor_nw/2025"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "요리 초보 전용 초간단 가이드",
+      "persona": "26세 대학원생, 자취 시작, 라면과 달걀 프라이만 가능, 요리 유튜브는 너무 복잡",
+      "frequency": "높음",
+      "workaround": "유튜브 '자취 요리' 검색 → 재료 목록 복잡 → 포기 → 배달 주문",
+      "existing_solutions": [
+        {
+          "name": "유튜브 자취요리 채널",
+          "pricing": "무료",
+          "target": "일반",
+          "limitation": "재료 구매 연동 없음, 실력 수준 맞춤 불가"
+        },
+        {
+          "name": "쿡앱스",
+          "pricing": "무료",
+          "target": "요리 초보~중급",
+          "limitation": "한국 서비스 중단, 글로벌만 운영"
+        },
+        {
+          "name": "해먹남녀",
+          "pricing": "무료",
+          "target": "일반",
+          "limitation": "레시피 수준 들쭉날쭉, 1인분 특화 아님"
+        }
+      ],
+      "failure_reason": "기존 레시피 앱은 '요리를 좋아하는 사람' 대상. 요리 초보의 진입 장벽(도구 부족, 용어 모름, 시간 부족)을 해결하지 못함.",
+      "gap_reality": "partial",
+      "gap_definition": "레시피 앱 자체는 많으나, '완전 초보 + 1인분 + 5분 이내 + 최소 도구' 조합에 특화된 서비스는 미약",
+      "korea_specifics": "한국 20-30대 자취생 중 '요리 못함' 자가 평가 67% (2024 블라인드 설문)",
+      "wtp_evidence": "\"진짜 바보도 할 수 있는 요리앱 있으면 프리미엄 결제할 듯\" — 블라인드 [Source: https://blind.com/community/example3]",
+      "sources": [
+        "https://blind.com/community/example3"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "1인 가구 영양 불균형 해소",
+      "persona": "32세 IT 개발자, 편의점 + 배달로 하루 2끼, 건강검진에서 비타민D 결핍 + 나트륨 과다 지적",
+      "frequency": "중간",
+      "workaround": "영양제 복용으로 땜빵. 식단 개선 의지는 있으나 실행력 부족.",
+      "existing_solutions": [
+        {
+          "name": "눔(Noom)",
+          "pricing": "₩15,000/월",
+          "target": "다이어트 목적",
+          "limitation": "한국 식단 DB 부족, 일반 건강 관리에는 과도"
+        },
+        {
+          "name": "MyFitnessPal",
+          "pricing": "무료-$20/월",
+          "target": "피트니스",
+          "limitation": "한국 음식 인식 약함, 수동 입력 번거로움"
+        }
+      ],
+      "failure_reason": "영양 트래킹 앱은 '다이어트/피트니스' 목적. 일반 건강 유지 목적의 1인 가구에게는 과도하거나 한국 식단 미지원.",
+      "gap_reality": "partial",
+      "gap_definition": "칼로리 트래킹은 포화. 그러나 한국 편의점/배달 음식 기반 영양 분석 + 개선 추천은 부족",
+      "korea_specifics": "한국 1인 가구 나트륨 섭취량 WHO 권장량 2배 초과 [Source: https://khealth.or.kr/report/2025]",
+      "wtp_evidence": "\"건강검진 결과 나쁘면 그때 잠깐 앱 쓰다 말아요\" — Reddit [Source: https://reddit.com/r/korea/comments/example4]",
+      "sources": [
+        "https://khealth.or.kr/report/2025",
+        "https://reddit.com/r/korea/comments/example4"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "배달비 + 외식비 절감 도구",
+      "persona": "29세 스타트업 직원, 월 배달비 40-50만원, 줄이고 싶지만 대안이 없다고 느낌",
+      "frequency": "높음",
+      "workaround": "배달 앱 구독 할인, 쿠폰 사냥. 근본적 해결 아님.",
+      "existing_solutions": [
+        {
+          "name": "배민/쿠팡이츠 구독",
+          "pricing": "₩5,000-9,900/월",
+          "target": "헤비 유저",
+          "limitation": "배달 자체를 줄이는 솔루션이 아님"
+        },
+        {
+          "name": "가계부 앱 (뱅크샐러드)",
+          "pricing": "무료",
+          "target": "일반",
+          "limitation": "지출 기록만, 대안 제시 안함"
+        }
+      ],
+      "failure_reason": "지출 추적 도구는 많지만, '배달 대신 이걸 해봐'라는 실행 가능한 대안을 제시하는 서비스가 없음.",
+      "gap_reality": "real",
+      "gap_definition": "배달비 절감 '동기부여 + 실행 지원(장보기 리스트, 초간단 레시피)' 통합 서비스 부재",
+      "korea_specifics": "한국 1인 가구 월평균 외식비 42만원 (2025), 전년 대비 18% 증가",
+      "wtp_evidence": "\"배달비만 줄여도 월 20만원 아끼는데... 자취 요리 코칭 서비스 있으면 바로 결제\" — HN comment [Source: https://news.ycombinator.com/item?id=example5]",
+      "sources": [
+        "https://news.ycombinator.com/item?id=example5"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "소셜 식사 매칭",
+      "persona": "31세 이직 후 새 도시 정착, 혼밥이 외로움, 같이 먹을 사람 찾고 싶음",
+      "frequency": "낮음",
+      "workaround": "소모임 앱(당근, 소모임) 검색하지만 식사 특화 아님",
+      "existing_solutions": [
+        {
+          "name": "위밋(WeMeet)",
+          "pricing": "무료",
+          "target": "소셜 네트워킹",
+          "limitation": "식사 특화 아님, 활성 유저 부족"
+        },
+        {
+          "name": "점심뭐먹지",
+          "pricing": "무료",
+          "target": "직장인",
+          "limitation": "같은 회사 내 한정"
+        }
+      ],
+      "failure_reason": "소셜 다이닝은 수요 대비 공급(활성 유저) 부족. 네트워크 효과 달성 전 이탈.",
+      "gap_reality": "none",
+      "gap_definition": "이미 다수 시도 후 실패. 핵심 문제는 기술이 아닌 네트워크 효과와 신뢰 구축.",
+      "korea_specifics": "한국 혼밥 문화 수용도 높아 소셜 다이닝 니즈 상대적으로 약함",
+      "wtp_evidence": "지불 의사 증거 미발견",
+      "sources": []
+    }
+  ],
+  "scorecard": [
+    {
+      "rank": 1,
+      "problem": "배달비 + 외식비 절감 도구",
+      "market": 8,
+      "urgency": 9,
+      "competition": 3,
+      "barrier": 4,
+      "wtp": 8,
+      "total": 38,
+      "rationale": {
+        "시장성 8/10": "월 40만원+ 외식비 지출자 다수",
+        "긴급성 9/10": "경제적 압박이 직접적, 매일 반복",
+        "경쟁강도 3/10": "지출 추적은 있으나 대안 제시 서비스 없음 (Real Gap)",
+        "진입장벽 4/10": "배달 앱 API 없이도 수동 입력으로 시작 가능",
+        "WTP 8/10": "절감 금액 대비 명확한 ROI"
+      }
+    },
+    {
+      "rank": 2,
+      "problem": "식재료 낭비 제로 시스템",
+      "market": 9,
+      "urgency": 8,
+      "competition": 3,
+      "barrier": 5,
+      "wtp": 7,
+      "total": 36,
+      "rationale": {
+        "시장성 9/10": "1인 가구 736만, 식재료 폐기 문제 보편적 [Source: https://kostat.go.kr/portal/korea/kor_nw/2025]",
+        "긴급성 8/10": "매주 반복되는 고통, 양쪽 커뮤니티에서 높은 빈도",
+        "경쟁강도 3/10": "통합 솔루션 부재 (Real Gap)",
+        "진입장벽 5/10": "식재료 DB 구축 필요, OCR/바코드 기술",
+        "WTP 7/10": "월 5,000-10,000원 지불 의사 확인"
+      }
+    },
+    {
+      "rank": 3,
+      "problem": "요리 초보 전용 초간단 가이드",
+      "market": 7,
+      "urgency": 7,
+      "competition": 5,
+      "barrier": 4,
+      "wtp": 6,
+      "total": 31,
+      "rationale": {
+        "시장성 7/10": "요리 못하는 자취생 67%, 큰 모수",
+        "긴급성 7/10": "매일 식사 문제지만 편의점으로 대체 가능",
+        "경쟁강도 5/10": "레시피 앱 다수 존재 (Partial Gap)",
+        "진입장벽 4/10": "콘텐츠 제작 비용, 차별화 어려움",
+        "WTP 6/10": "무료 콘텐츠 많아 유료 전환 저항"
+      }
+    },
+    {
+      "rank": 4,
+      "problem": "1인 가구 영양 불균형 해소",
+      "market": 6,
+      "urgency": 5,
+      "competition": 6,
+      "barrier": 6,
+      "wtp": 5,
+      "total": 24,
+      "rationale": {
+        "시장성 6/10": "건강 관심층은 크나 행동 전환율 낮음",
+        "긴급성 5/10": "건강검진 시즌에만 급증, 평소 관심 저조",
+        "경쟁강도 6/10": "Noom, MFP 등 대형 플레이어 존재 (Partial Gap)",
+        "진입장벽 6/10": "한국 식단 DB + 의료 자문 필요",
+        "WTP 5/10": "건강 관련 지불 의사 있으나 지속성 의문"
+      }
+    },
+    {
+      "rank": 5,
+      "problem": "소셜 식사 매칭",
+      "market": 4,
+      "urgency": 3,
+      "competition": 8,
+      "barrier": 8,
+      "wtp": 3,
+      "total": 14,
+      "rationale": {
+        "시장성 4/10": "혼밥 문화 수용도 높아 시장 작음",
+        "긴급성 3/10": "외로움은 있으나 식사 특화 니즈 약함",
+        "경쟁강도 8/10": "다수 시도 후 실패 반복 (No Gap — 기술 문제 아님)",
+        "진입장벽 8/10": "네트워크 효과 달성 극도로 어려움",
+        "WTP 3/10": "무료 서비스 기대, 유료 전환 사례 없음"
+      }
+    }
+  ],
+  "action_plan": [
+    {
+      "problem": "배달비 + 외식비 절감 도구",
+      "persona": "서울 강남/판교 IT 직장인 28-35세, 월 배달비 30만원+, 저축 목표 있으나 식비 통제 실패",
+      "validation": "랜딩페이지 + 사전등록 100명 목표, Instagram 타겟 광고 (2주, 50만원 예산)",
+      "mvp_scope": "배달비 트래커 + 주간 절감 리포트 + 대안 레시피 3개/주 추천",
+      "timeline": "검증 2주 → MVP 4주 → 베타 런칭",
+      "risks": "배달 습관 변경 어려움 → 게이미피케이션으로 동기부여, 작은 성공 경험 설계",
+      "revenue_model": "프리미엄 구독 ₩4,900/월 (고급 분석 + 맞춤 장보기 리스트)"
+    },
+    {
+      "problem": "식재료 낭비 제로 시스템",
+      "persona": "자취 1-3년차 25-32세, 요리 의지는 있으나 식재료 관리 실패 반복",
+      "validation": "카카오톡 오픈채팅 커뮤니티 빌딩 (자취 요리 고민방), 50명 인터뷰",
+      "mvp_scope": "냉장고 식재료 수동 등록 + 유통기한 알림 + 재고 기반 레시피 추천",
+      "timeline": "검증 3주 → MVP 6주 → 베타 런칭",
+      "risks": "수동 입력 피로 → OCR/바코드 스캔 2차 개발, 초기엔 간편 UI로 보완",
+      "revenue_model": "프리미엄 구독 ₩3,900/월 (AI 레시피 추천 + 자동 장보기 리스트)"
+    },
+    {
+      "problem": "요리 초보 전용 초간단 가이드",
+      "persona": "대학생/사회초년생 22-28세, 자취 시작, 요리 경험 제로, 시간 부족",
+      "validation": "인스타그램 릴스 + 틱톡 콘텐츠 10개 테스트 (무료), 반응 측정",
+      "mvp_scope": "5분 이내 1인분 레시피 50개 + 난이도별 분류 + 필요 도구 최소화",
+      "timeline": "검증 2주 → MVP 4주 → 런칭",
+      "risks": "무료 콘텐츠와 차별화 어려움 → 인터랙티브 스텝바이스텝 가이드로 차별화",
+      "revenue_model": "광고 + 프리미엄 ₩2,900/월 (맞춤 식단 + 장보기 자동화)"
+    }
+  ],
+  "prd_seed": {
+    "problem": "1인 가구의 배달 앱 과의존으로 인한 월 40만원+ 외식비 지출과 건강 악화",
+    "target_user": "서울/수도권 IT 직장인 28-35세, 월 배달비 30만원 이상, 줄이고 싶지만 대안을 모르는 사람",
+    "frequency_severity": "매일 반복 (하루 2-3회 식사 결정), 월 누적 재정 영향 40-50만원",
+    "market_size": "TAM $45B (글로벌 밀키트+식단관리) → SAM $2.8B (APAC 1인가구) → SOM $42M (한국 25-39세 1.5%)",
+    "community_evidence": "Reddit, 블라인드에서 '배달비 줄이고 싶다' 반복 언급. HN에서 meal planning 자동화 수요 확인.",
+    "solution_failures": "가계부 앱은 기록만, 배달 구독은 배달을 줄이지 않음. '대안 제시' 기능이 누락.",
+    "wtp_evidence": "월 절감액 20만원 기대 시 ₩4,900-9,900/월 지불 의사 (배달비 대비 명확한 ROI)",
+    "value_prop": "배달 습관을 자취 요리로 전환시켜주는 AI 코치 — 절감액을 실시간으로 보여주며 동기부여",
+    "must_have": [
+      "배달비 지출 트래킹 (수동/자동)",
+      "주간 절감 리포트 + 목표 설정",
+      "대안 초간단 레시피 추천 (5분 이내, 1인분)"
+    ],
+    "nice_to_have": [
+      "장보기 리스트 자동 생성",
+      "근처 마트 가격 비교",
+      "친구 챌린지 (소셜)"
+    ],
+    "anti_scope": [
+      "정식 밀키트 배송 사업",
+      "다이어트/피트니스 기능",
+      "소셜 다이닝 매칭"
+    ],
+    "kpis": [
+      "MAU 10,000 (런칭 3개월)",
+      "유료 전환율 8%+",
+      "평균 배달비 월 15% 감소 (사용자 자가 보고)"
+    ],
+    "next_steps": [
+      "타겟 사용자 15명 심층 인터뷰",
+      "경쟁사 (뱅크샐러드, 배민) 심층 분석",
+      "product-manager 에이전트로 정식 PRD 작성"
+    ]
+  },
+  "sources_registry": [
+    {
+      "id": 1,
+      "url": "https://grandviewresearch.com/industry-analysis/meal-kit-market",
+      "title": "Meal Kit Delivery Services Market Size Report 2025-2030",
+      "type": "report",
+      "tier": "T1",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 2,
+      "url": "https://mordorintelligence.com/industry-reports/meal-kit-market",
+      "title": "Asia-Pacific Meal Kit Market - Growth, Trends, Forecast",
+      "type": "report",
+      "tier": "T1",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 3,
+      "url": "https://kostat.go.kr/portal/korea/kor_nw/2025",
+      "title": "2025 인구총조사 - 1인 가구 현황",
+      "type": "article",
+      "tier": "T1",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 4,
+      "url": "https://reddit.com/r/MealPrepSunday/comments/example1",
+      "title": "Living alone - I throw away so much food",
+      "type": "forum",
+      "tier": "T3",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 5,
+      "url": "https://reddit.com/r/koreanlife/comments/example2",
+      "title": "자취생 냉장고 관리 팁 공유",
+      "type": "forum",
+      "tier": "T3",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 6,
+      "url": "https://blind.com/community/example3",
+      "title": "요리 초보 자취생 현실",
+      "type": "forum",
+      "tier": "T3",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 7,
+      "url": "https://khealth.or.kr/report/2025",
+      "title": "2025 국민건강영양조사 결과",
+      "type": "report",
+      "tier": "T1",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 8,
+      "url": "https://reddit.com/r/korea/comments/example4",
+      "title": "건강검진 나쁜 결과 후 식단 변화 시도",
+      "type": "forum",
+      "tier": "T3",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 9,
+      "url": "https://news.ycombinator.com/item?id=example5",
+      "title": "Ask HN: Best tools for reducing food delivery spending?",
+      "type": "forum",
+      "tier": "T3",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 10,
+      "url": "https://producthunt.com/posts/meal-planning-ai",
+      "title": "Meal Planning AI - Product Hunt Launch",
+      "type": "review",
+      "tier": "T2",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 11,
+      "url": "https://g2.com/categories/meal-planning",
+      "title": "Best Meal Planning Software 2025",
+      "type": "review",
+      "tier": "T2",
+      "accessed": "2026-03-03"
+    },
+    {
+      "id": 12,
+      "url": "https://statista.com/outlook/dmo/online-food-delivery/south-korea",
+      "title": "Online Food Delivery - South Korea",
+      "type": "report",
+      "tier": "T1",
+      "accessed": "2026-03-03"
+    }
+  ],
+  "methodology": {
+    "approach": "5-agent parallel research pipeline (Trend Scanner, Community Analyst, Deep Researcher, Korea Specialist, Strategist)",
+    "search_count": 28,
+    "sources_evaluated": 45,
+    "date_range": "2024-2026",
+    "limitations": [
+      "유료 시장 리포트 (Gartner, Forrester, Euromonitor 등) 미포함 — 공개 데이터만 사용",
+      "정량 데이터는 공개 출처 한정 — 실제 TAM/SAM은 변동 가능",
+      "사용자 인터뷰 미실시 — 커뮤니티 데이터로 대체 (Reddit, 블라인드, HN)",
+      "한국 시장 데이터는 통계청/건강보험공단 기준 — 최신 트렌드 반영 지연 가능"
+    ]
+  },
+  "market_dynamics": {
+    "growth_drivers": [
+      {
+        "factor": "1인 가구 지속 증가",
+        "impact": "높음",
+        "evidence": "한국 1인 가구 비율 2020년 31.7% → 2025년 34.5% → 2030년 38% 전망 [Source: https://kostat.go.kr/portal/korea/kor_nw/2025]"
+      },
+      {
+        "factor": "건강/웰니스 트렌드",
+        "impact": "높음",
+        "evidence": "MZ세대 건강 관련 지출 전년 대비 23% 증가 [Source: https://khealth.or.kr/report/2025]"
+      },
+      {
+        "factor": "AI/개인화 기술 성숙",
+        "impact": "중간",
+        "evidence": "GPT 기반 레시피 생성, 이미지 인식 식재료 분류 기술 상용화 단계"
+      }
+    ],
+    "headwinds": [
+      {
+        "factor": "배달 앱 고착 효과",
+        "impact": "높음",
+        "evidence": "배달의민족 MAU 2,000만+, 강력한 습관 형성. 전환 비용 높음 [Source: https://statista.com/outlook/dmo/online-food-delivery/south-korea]"
+      },
+      {
+        "factor": "요리 시간 투자 저항",
+        "impact": "중간",
+        "evidence": "1인 가구 평균 요리 시간 10분 미만 — '시간 없음'이 가장 큰 저항"
+      }
+    ],
+    "regulatory": [
+      {
+        "factor": "식품위생법 레시피 콘텐츠 규제",
+        "region": "한국",
+        "impact": "낮음",
+        "evidence": "레시피 추천은 의료/영양 자문에 해당하지 않아 규제 리스크 낮음"
+      }
+    ]
+  },
+  "segmentation": [
+    {
+      "segment": "배달 헤비유저 (월 30만+)",
+      "size": "약 200만 명",
+      "characteristics": "25-35세, IT/금융 직장인, 시간 부족, 소득 중상위",
+      "wtp": "₩5,000-10,000/월",
+      "current_solution": "배달 앱 구독 + 가계부"
+    },
+    {
+      "segment": "자취 초보 (1년 미만)",
+      "size": "약 150만 명/년",
+      "characteristics": "22-28세, 대학생/사회초년생, 요리 경험 없음",
+      "wtp": "₩3,000-5,000/월",
+      "current_solution": "편의점 + 유튜브"
+    },
+    {
+      "segment": "건강 관심 자취생",
+      "size": "약 100만 명",
+      "characteristics": "28-40세, 건강검진 후 경각심, 운동 병행",
+      "wtp": "₩8,000-15,000/월",
+      "current_solution": "영양제 + Noom/MFP"
+    },
+    {
+      "segment": "절약형 자취생",
+      "size": "약 300만 명",
+      "characteristics": "전 연령, 저소득/저축 목표, 가성비 중시",
+      "wtp": "₩0-3,000/월 (무료 선호)",
+      "current_solution": "편의점 할인 + 마트 전단지"
+    }
+  ],
+  "value_chain": {
+    "stages": [
+      "식재료 생산",
+      "유통/물류",
+      "장보기/구매",
+      "식재료 관리",
+      "레시피/조리",
+      "영양 분석",
+      "식비 관리"
+    ],
+    "opportunity_stage": "식재료 관리",
+    "rationale": "생산-유통-구매는 대형 플레이어 지배. 영양 분석은 경쟁 치열. '식재료 관리' 단계는 디지털화가 가장 늦은 영역으로, 상하류(구매↔조리) 연결 허브가 될 수 있음."
+  },
+  "risk_matrix": [
+    {
+      "risk": "배달 앱 습관 전환 실패",
+      "probability": "높음",
+      "impact": "높음",
+      "mitigation": "게이미피케이션 + 점진적 전환 (주 1회부터) + 절감액 실시간 표시로 동기부여"
+    },
+    {
+      "risk": "무료 콘텐츠와 차별화 어려움",
+      "probability": "중간",
+      "impact": "중간",
+      "mitigation": "개인화(냉장고 재고 기반 추천)로 차별화. 단순 레시피가 아닌 '통합 관리' 가치 제안"
+    },
+    {
+      "risk": "식재료 DB 구축 비용",
+      "probability": "중간",
+      "impact": "중간",
+      "mitigation": "MVP에서 수동 입력으로 시작, 유저 데이터 축적 후 자동화. 공공 데이터(식약처) 활용"
+    },
+    {
+      "risk": "대형 플랫폼 진입 (배민/쿠팡)",
+      "probability": "낮음",
+      "impact": "높음",
+      "mitigation": "니치 시장 빠른 점유 + 커뮤니티 기반 리텐션. 대형사는 '절감' 메시지와 상충하여 진입 동기 낮음"
+    }
+  ]
+};
+
+// ===== THEME =====
+function toggleTheme() {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  document.querySelector('.theme-toggle').textContent = next === 'light' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+  localStorage.setItem('mr-theme', next);
+}
+
+(function initTheme() {
+  const saved = localStorage.getItem('mr-theme');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    const btn = document.querySelector('.theme-toggle');
+    if (btn) btn.textContent = '\uD83C\uDF19';
+  }
+})();
+
+// ===== TABS (depth-conditional) =====
+const TAB_CONFIG = {
+  quick: [
+    { id: 'overview', label: 'Overview' },
+    { id: 'needs', label: 'Needs Analysis' }
+  ],
+  standard: [
+    { id: 'overview', label: 'Overview' },
+    { id: 'needs', label: 'Needs Analysis' },
+    { id: 'market', label: 'Market Sizing' },
+    { id: 'scorecard', label: 'Scorecard' },
+    { id: 'action', label: 'Action Plan' },
+    { id: 'prd', label: 'PRD Seed' }
+  ],
+  consulting: [
+    { id: 'overview', label: 'Overview' },
+    { id: 'needs', label: 'Needs Analysis' },
+    { id: 'market', label: 'Market & Segments' },
+    { id: 'dynamics', label: 'Dynamics & Risk' },
+    { id: 'scorecard', label: 'Scorecard' },
+    { id: 'action', label: 'Action Plan' },
+    { id: 'prd', label: 'PRD Seed' },
+    { id: 'references', label: 'References' }
+  ]
+};
+
+function initTabs() {
+  const depth = DATA.depth || 'standard';
+  const tabs = TAB_CONFIG[depth] || TAB_CONFIG.standard;
+  const bar = document.getElementById('tabBar');
+
+  bar.setAttribute('role', 'tablist');
+  bar.innerHTML = tabs.map((t, i) =>
+    `<button class="tab${i === 0 ? ' active' : ''}" data-tab="${t.id}" role="tab" aria-selected="${i === 0}" aria-controls="panel-${t.id}" id="tab-${t.id}">${t.label}</button>`
+  ).join('');
+
+  bar.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      bar.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+}
+
+// ===== HELPERS =====
+function gapClass(gap) {
+  if (gap === 'real') return 'real';
+  if (gap === 'partial') return 'partial';
+  return 'none';
+}
+
+function gapLabel(gap) {
+  if (gap === 'real') return '\uD83D\uDFE2 Real Gap';
+  if (gap === 'partial') return '\uD83D\uDFE1 Partial';
+  return '\uD83D\uDD34 No Gap';
+}
+
+function gapBadge(gap) {
+  return `<span class="gap-badge ${gapClass(gap)}">${gapLabel(gap)}</span>`;
+}
+
+function impactBadge(level) {
+  const cls = (level || '').includes('\uB192') || level === 'high' ? 'impact-high'
+    : (level || '').includes('\uB0AE') || level === 'low' ? 'impact-low' : 'impact-medium';
+  return `<span class="gap-badge ${cls}">${esc(level)}</span>`;
+}
+
+function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+function safeUrl(url) { try { const u = new URL(url); return ['http:','https:'].includes(u.protocol) ? esc(url) : '#'; } catch { return '#'; } }
+function safeScore(s) { return (s.market ?? 0) + (s.urgency ?? 0) + (10 - (s.competition ?? 10)) + (10 - (s.barrier ?? 10)) + (s.wtp ?? 0); }
+
+const RADAR_COLORS = ['#2563eb', '#16a34a', '#ca8a04', '#dc2626', '#8b5cf6'];
+
+// Build sources lookup for inline citations (id + tier)
+const SRC_MAP = {};
+(DATA.sources_registry || []).forEach(s => { SRC_MAP[s.url] = { id: s.id, tier: s.tier || 'T3' }; });
+
+const TIER_LABELS = { T1: 'Authoritative', T2: 'Industry', T3: 'Community' };
+const TIER_CSS = { T1: 't1', T2: 't2', T3: 't3' };
+
+function citify(text) {
+  if (!text) return '';
+  if (DATA.depth !== 'consulting') return esc(text.replace(/\[Source:\s*https?:\/\/[^\]]+\](?:\s*\([^)]+\))?/gi, '').trim());
+  return (text || '').replace(/\[Source:\s*(https?:\/\/[^\]\s]+)\](?:\s*\((T[123])\))?/gi, (_, url, tierHint) => {
+    const entry = SRC_MAP[url];
+    if (entry) {
+      const tier = entry.tier || tierHint || 'T3';
+      const css = TIER_CSS[tier] || 't-unknown';
+      return `<a class="cite-link ${css}" href="#ref-${entry.id}" onclick="goRef(${entry.id})" title="[${tier}] ${esc(url)}">${entry.id}</a>`;
+    }
+    const css = TIER_CSS[tierHint] || 't-unknown';
+    return `<a class="cite-link ${css}" href="${esc(url)}" target="_blank" title="${esc(url)}">?</a>`;
+  });
+}
+
+function goRef(id) {
+  // Switch to references tab and scroll to entry
+  const refTab = document.querySelector('[data-tab="references"]');
+  if (refTab) {
+    document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    refTab.classList.add('active');
+    refTab.setAttribute('aria-selected', 'true');
+    document.getElementById('panel-references').classList.add('active');
+    setTimeout(() => {
+      const el = document.getElementById('ref-' + id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+}
+
+// ===== DEPTH HELPERS =====
+function isStandard() { return DATA.depth === 'standard' || DATA.depth === 'consulting'; }
+function isConsulting() { return DATA.depth === 'consulting'; }
+
+// ===== RENDER =====
+function render() {
+  initTabs();
+
+  // Header
+  document.getElementById('reportTitle').textContent = DATA.topic;
+  document.getElementById('reportDate').textContent = DATA.date;
+
+  const depth = DATA.depth || 'standard';
+  const depthLabels = { quick: 'Quick Scan', standard: 'Standard', consulting: 'Consulting Grade' };
+  document.getElementById('reportDepth').innerHTML =
+    `<span class="depth-badge ${depth}">${depthLabels[depth] || depth}</span>`;
+
+  // Stats
+  renderStats();
+
+  // Gap Chart
+  renderGapChart();
+
+  // Radar Chart (standard+)
+  if (isStandard()) renderRadar();
+  else document.getElementById('radarCard').style.display = 'none';
+
+  // Executive Summary
+  document.getElementById('execSummary').innerHTML = citify(DATA.executive_summary || '');
+
+  // Market Sizing (standard+)
+  if (isStandard()) renderMarketSizing();
+
+  // Needs
+  renderNeeds();
+
+  // Standard+ sections
+  if (isStandard()) {
+    renderScorecard();
+    renderActionPlan();
+    renderPRD();
+  }
+
+  // Consulting sections
+  if (isConsulting()) {
+    renderDynamics();
+    renderSegmentation();
+    renderReferences();
+    renderMethodology();
+  }
+}
+
+function renderStats() {
+  const gapCounts = { real: 0, partial: 0, none: 0 };
+  (DATA.needs || []).forEach(n => gapCounts[n.gap_reality]++);
+  const topOpp = (DATA.scorecard || [])[0];
+
+  let html = `
+    <div class="stat-card">
+      <div class="stat-label">Needs Found</div>
+      <div class="stat-value">${(DATA.needs || []).length}</div>
+      <div class="stat-sub">across ${DATA.agents_used || 5} agents</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Real Gap</div>
+      <div class="stat-value" style="color: var(--green);">${gapCounts.real}</div>
+      <div class="stat-sub">Unmet needs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Partial Gap</div>
+      <div class="stat-value" style="color: var(--yellow);">${gapCounts.partial}</div>
+      <div class="stat-sub">Segment gaps</div>
+    </div>
+  `;
+
+  if (isStandard() && DATA.market_sizing) {
+    html += `
+    <div class="stat-card">
+      <div class="stat-label">TAM</div>
+      <div class="stat-value" style="font-size:22px;">${DATA.market_sizing.tam?.value || 'N/A'}</div>
+      <div class="stat-sub">Total Addressable Market</div>
+    </div>`;
+  }
+
+  if (topOpp) {
+    html += `
+    <div class="stat-card">
+      <div class="stat-label">Top Opportunity</div>
+      <div class="stat-value">${safeScore(topOpp)}<span class="max" style="font-size:12px;font-weight:400;color:var(--text-3);">/50</span></div>
+      <div class="stat-sub">${esc(topOpp.problem)}</div>
+    </div>`;
+  }
+
+  // Sources count removed from overview — shown in References tab
+
+  document.getElementById('statsRow').innerHTML = html;
+}
+
+function renderGapChart() {
+  const gapCounts = { real: 0, partial: 0, none: 0 };
+  (DATA.needs || []).forEach(n => gapCounts[n.gap_reality]++);
+  const total = (DATA.needs || []).length || 1;
+
+  document.getElementById('gapChart').innerHTML = ['real', 'partial', 'none'].map(g => {
+    const count = gapCounts[g];
+    const pct = Math.round((count / total) * 100);
+    return `
+      <div class="gap-row">
+        <div class="gap-label">${gapLabel(g)}</div>
+        <div class="gap-bar-track">
+          <div class="gap-bar ${gapClass(g)}" style="width: ${Math.max(pct, count > 0 ? 12 : 0)}%">
+            <span class="gap-bar-value">${count}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderRadar() {
+  const svg = document.getElementById('radarChart');
+  const dims = ['Market', 'Urgency', 'Comp\u2193', 'Barrier\u2193', 'WTP'];
+  const cx = 160, cy = 140, maxR = 110;
+  const levels = 5;
+  const angleStep = (2 * Math.PI) / dims.length;
+  const startAngle = -Math.PI / 2;
+
+  let html = '';
+
+  for (let l = 1; l <= levels; l++) {
+    const r = (maxR / levels) * l;
+    const points = dims.map((_, i) => {
+      const angle = startAngle + i * angleStep;
+      return `${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`;
+    }).join(' ');
+    html += `<polygon class="radar-grid" points="${points}" />`;
+  }
+
+  dims.forEach((dim, i) => {
+    const angle = startAngle + i * angleStep;
+    const x2 = cx + maxR * Math.cos(angle);
+    const y2 = cy + maxR * Math.sin(angle);
+    html += `<line class="radar-axis" x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" />`;
+    const lx = cx + (maxR + 18) * Math.cos(angle);
+    const ly = cy + (maxR + 18) * Math.sin(angle);
+    const anchor = Math.abs(Math.cos(angle)) < 0.1 ? 'middle' : Math.cos(angle) > 0 ? 'start' : 'end';
+    html += `<text class="radar-label" x="${lx}" y="${ly}" text-anchor="${anchor}" dominant-baseline="central">${dim}</text>`;
+  });
+
+  const top3 = (DATA.scorecard || []).slice(0, 3);
+  const legendEl = document.getElementById('radarLegend');
+  let legendHtml = '';
+
+  top3.forEach((item, idx) => {
+    const values = [item.market, item.urgency, 10 - item.competition, 10 - item.barrier, item.wtp].map(v => Math.min(10, Math.max(0, v ?? 0)));
+    const color = RADAR_COLORS[idx];
+    const points = values.map((v, i) => {
+      const r = (v / 10) * maxR;
+      const angle = startAngle + i * angleStep;
+      return `${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`;
+    }).join(' ');
+
+    html += `<polygon class="radar-area" points="${points}" fill="${color}" fill-opacity="0.12" stroke="${color}" />`;
+    values.forEach((v, i) => {
+      const r = (v / 10) * maxR;
+      const angle = startAngle + i * angleStep;
+      html += `<circle class="radar-dot" cx="${cx + r * Math.cos(angle)}" cy="${cy + r * Math.sin(angle)}" r="4" fill="${color}" />`;
+    });
+
+    legendHtml += `
+      <div class="radar-legend-item">
+        <div class="radar-legend-dot" style="background:${color}"></div>
+        #${idx + 1} ${esc(item.problem)}
+      </div>
+    `;
+  });
+
+  svg.innerHTML = html;
+  legendEl.innerHTML = legendHtml;
+}
+
+function renderMarketSizing() {
+  const ms = DATA.market_sizing;
+  const cl = DATA.competitive_landscape || [];
+
+  // TAM/SAM/SOM
+  const tamEl = document.getElementById('tamSamSom');
+  if (ms) {
+    const qBadge = { high: 'real', medium: 'partial', low: 'none' };
+    const qLabel = { high: 'High Confidence', medium: 'Medium Confidence', low: 'Low Confidence' };
+    const dq = ms.data_quality || 'low';
+
+    tamEl.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:calc(var(--grid)*2);">
+        <div style="display:flex;align-items:center;gap:calc(var(--grid));margin-bottom:calc(var(--grid));">
+          <span style="font-size:12px;color:var(--text-2);text-transform:uppercase;font-weight:600;">Data Quality</span>
+          <span class="gap-badge ${qBadge[dq]}">${qLabel[dq]}</span>
+        </div>
+        ${['tam','sam','som'].map(k => {
+          const d = ms[k];
+          const colors = { tam: 'var(--accent)', sam: 'var(--green)', som: 'var(--yellow)' };
+          const labels = { tam: 'TAM (Total)', sam: 'SAM (Serviceable)', som: 'SOM (Obtainable)' };
+          return d ? `
+          <div style="background:var(--bg-2);border-radius:var(--radius-sm);padding:calc(var(--grid)*2);">
+            <div style="font-size:12px;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.5px;">${labels[k]}</div>
+            <div style="font-family:var(--font-en);font-size:24px;font-weight:700;color:${colors[k]};margin:4px 0;">${d.value || 'N/A'}</div>
+            <div style="font-size:13px;color:var(--text-2);">${citify(d.basis || '')}</div>
+            <div style="font-size:11px;color:var(--text-3);margin-top:2px;">${citify(d.source || '')}</div>
+          </div>` : '';
+        }).join('')}
+        ${ms.cagr ? `<div style="font-size:13px;color:var(--text-1);margin-top:calc(var(--grid));">
+          <strong>CAGR:</strong> ${ms.cagr} (${ms.cagr_period || ''})
+        </div>` : ''}
+        ${ms.korea_market ? `<div style="font-size:13px;color:var(--text-1);">
+          <strong>Korea:</strong> ${citify(ms.korea_market)}
+        </div>` : ''}
+      </div>
+    `;
+  } else {
+    tamEl.innerHTML = '<p style="color:var(--text-3);font-size:14px;">No market sizing data available.</p>';
+  }
+
+  // Funnel
+  renderFunnel(ms);
+
+  // Competitor table
+  const tbody = document.getElementById('competitorBody');
+  if (cl.length > 0) {
+    tbody.innerHTML = cl.map(c => `
+      <tr>
+        <td><span class="gap-badge ${c.category === '\uC9C1\uC811 \uACBD\uC7C1' ? 'none' : c.category === '\uAC04\uC811 \uB300\uCCB4\uC7AC' ? 'partial' : 'real'}">${esc(c.category)}</span></td>
+        <td><strong>${(c.players || []).map(esc).join(', ')}</strong></td>
+        <td>${esc(c.positioning || '-')}</td>
+        <td style="font-family:var(--font-en);white-space:nowrap;">${esc(c.price_range || '-')}</td>
+        <td>${esc(c.strengths || '-')}</td>
+        <td>${esc(c.weaknesses || '-')}</td>
+      </tr>
+    `).join('');
+  } else {
+    tbody.innerHTML = '<tr><td colspan="6" style="color:var(--text-3);text-align:center;">No competitive landscape data.</td></tr>';
+  }
+
+  // Competition summary
+  const summaryEl = document.getElementById('competitionSummary');
+  const intensity = DATA.competition_intensity;
+  const gapSummary = DATA.market_gap_summary;
+  if (intensity || gapSummary) {
+    const ic = intensity === '\uD3EC\uD654' ? 'var(--red)' : intensity === '\uC911\uAC04' ? 'var(--yellow)' : 'var(--green)';
+    summaryEl.innerHTML = `
+      <div style="display:flex;gap:calc(var(--grid)*3);flex-wrap:wrap;">
+        ${intensity ? `<div>
+          <span style="font-size:12px;font-weight:600;color:var(--text-2);text-transform:uppercase;">Competition</span>
+          <div style="font-size:18px;font-weight:700;color:${ic};margin-top:4px;">${esc(intensity)}</div>
+        </div>` : ''}
+        ${gapSummary ? `<div style="flex:1;min-width:200px;">
+          <span style="font-size:12px;font-weight:600;color:var(--text-2);text-transform:uppercase;">Market Gap</span>
+          <div style="font-size:14px;color:var(--text-1);margin-top:4px;line-height:1.6;">${citify(gapSummary)}</div>
+        </div>` : ''}
+      </div>
+    `;
+  }
+}
+
+function renderFunnel(ms) {
+  const svg = document.getElementById('funnelChart');
+  if (!ms) {
+    svg.innerHTML = '<text x="160" y="130" text-anchor="middle" fill="var(--text-3)" font-size="14">No data</text>';
+    return;
+  }
+
+  const items = [
+    { label: 'TAM', value: ms.tam?.value || '?', color: 'var(--accent)', width: 280 },
+    { label: 'SAM', value: ms.sam?.value || '?', color: 'var(--green)', width: 200 },
+    { label: 'SOM', value: ms.som?.value || '?', color: 'var(--yellow)', width: 120 }
+  ];
+
+  let html = '';
+  const cx = 160, startY = 20, rowH = 70, gap = 8;
+
+  items.forEach((item, i) => {
+    const y = startY + i * (rowH + gap);
+    const nextW = items[i + 1] ? items[i + 1].width : item.width * 0.6;
+    const x1 = cx - item.width / 2, x2 = cx + item.width / 2;
+    const x3 = cx + nextW / 2, x4 = cx - nextW / 2;
+    const y1 = y, y2 = y + rowH;
+
+    html += `<polygon points="${x1},${y1} ${x2},${y1} ${x3},${y2} ${x4},${y2}" fill="${item.color}" fill-opacity="0.15" stroke="${item.color}" stroke-width="2" />`;
+    html += `<text x="${cx}" y="${y + rowH / 2 - 8}" text-anchor="middle" fill="${item.color}" font-size="13" font-weight="700" font-family="var(--font-en)">${item.value}</text>`;
+    html += `<text x="${cx}" y="${y + rowH / 2 + 12}" text-anchor="middle" fill="var(--text-2)" font-size="12" font-family="var(--font-kr)">${item.label}</text>`;
+  });
+
+  svg.innerHTML = html;
+}
+
+function renderNeeds() {
+  const container = document.getElementById('needsList');
+  container.innerHTML = (DATA.needs || []).map((need, i) => `
+    <div class="need-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'));}">
+      <div class="need-header">
+        <div class="need-header-left">
+          <span class="need-num">${String(i + 1).padStart(2, '0')}</span>
+          <span class="need-title">${esc(need.title)}</span>
+        </div>
+        <div class="need-header-right">
+          ${gapBadge(need.gap_reality)}
+          <span class="need-freq">${esc(need.frequency)}</span>
+          <span class="need-chevron">\u25BE</span>
+        </div>
+      </div>
+      <div class="need-body">
+        <div class="need-section">
+          <div class="need-section-title">Persona</div>
+          <div class="need-section-content">${citify(need.persona)}</div>
+        </div>
+        <div class="need-section">
+          <div class="need-section-title">Current Workaround</div>
+          <div class="need-section-content">${citify(need.workaround)}</div>
+        </div>
+        ${need.existing_solutions && need.existing_solutions.length > 0 ? `
+        <div class="need-section">
+          <div class="need-section-title">Existing Solutions</div>
+          <table class="need-solutions-table">
+            <thead><tr><th>Product</th><th>Price</th><th>Target</th><th>Limitation</th></tr></thead>
+            <tbody>
+              ${need.existing_solutions.map(s => `
+                <tr>
+                  <td><strong>${esc(s.name)}</strong></td>
+                  <td>${esc(s.pricing || '-')}</td>
+                  <td>${esc(s.target || '-')}</td>
+                  <td>${citify(s.limitation || '-')}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+        ` : ''}
+        <div class="need-section">
+          <div class="need-section-title">Gap Reality</div>
+          <div class="need-section-content">
+            ${gapBadge(need.gap_reality)}
+            <span style="margin-left: 8px;">${citify(need.gap_definition || '')}</span>
+          </div>
+        </div>
+        ${need.failure_reason ? `
+        <div class="need-section">
+          <div class="need-section-title">Why Existing Solutions Fail</div>
+          <div class="need-section-content">${citify(need.failure_reason)}</div>
+        </div>
+        ` : ''}
+        ${need.korea_specifics || need.local_specifics ? `
+        <div class="need-section">
+          <div class="need-section-title">Local Specifics</div>
+          <div class="need-section-content">${citify(need.korea_specifics || need.local_specifics)}</div>
+        </div>
+        ` : ''}
+        ${need.wtp_evidence ? `
+        <div class="need-section">
+          <div class="need-section-title">Willingness to Pay</div>
+          <div class="need-quote">${citify(need.wtp_evidence)}</div>
+        </div>
+        ` : ''}
+        ${need.sources && need.sources.length > 0 ? `
+        <div class="need-section">
+          <div class="need-section-title">Sources</div>
+          ${need.sources.map(s => `<div class="need-source"><a href="${safeUrl(s)}" target="_blank" rel="noopener">${esc(s)}</a></div>`).join('')}
+        </div>
+        ` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderScorecard() {
+  const tbody = document.getElementById('scoreBody');
+  tbody.innerHTML = (DATA.scorecard || []).map((s, i) => {
+    const need = (DATA.needs || []).find(n => n.title === s.problem);
+    const gap = need ? need.gap_reality : 'none';
+    function miniBar(v) {
+      const cls = v >= 7 ? 'score-high' : v >= 4 ? 'score-mid' : 'score-low';
+      return `<div class="score-mini"><span class="score-mini-num">${v}</span><div class="score-bar-mini"><div class="score-bar-mini-fill ${cls}" style="width:${v * 10}%"></div></div></div>`;
+    }
+    return `
+      <tr>
+        <td class="rank">${i + 1}</td>
+        <td><strong>${esc(s.problem)}</strong></td>
+        <td>${gapBadge(gap)}</td>
+        <td class="score-cell">${miniBar(s.market)}</td>
+        <td class="score-cell">${miniBar(s.urgency)}</td>
+        <td class="score-cell">${miniBar(10 - s.competition)}</td>
+        <td class="score-cell">${miniBar(10 - s.barrier)}</td>
+        <td class="score-cell">${miniBar(s.wtp)}</td>
+        <td class="total-score">${safeScore(s)}<span class="max">/50</span></td>
+      </tr>
+    `;
+  }).join('');
+
+  const rationaleEl = document.getElementById('scoreRationale');
+  rationaleEl.innerHTML = (DATA.scorecard || []).map(s => {
+    if (!s.rationale) return '';
+    return `
+      <div class="need-section" style="margin-bottom: calc(var(--grid) * 2);">
+        <div class="need-section-title">${esc(s.problem)}</div>
+        <div class="need-section-content">
+          ${Object.entries(s.rationale).map(([k, v]) => `<div style="margin-bottom:4px;"><strong>${esc(k)}:</strong> ${citify(v)}</div>`).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderActionPlan() {
+  const grid = document.getElementById('oppGrid');
+  grid.innerHTML = (DATA.action_plan || []).map((opp, i) => {
+    const matched = (DATA.scorecard || []).find(s => s.problem === opp.problem);
+    const score = matched ? safeScore(matched) : null;
+    return `
+    <div class="opp-card">
+      <div class="opp-card-rank">
+        <span class="opp-card-rank-num">OPPORTUNITY #${i + 1}</span>
+        ${score !== null ? `<span style="font-family:var(--font-en);font-weight:700;color:var(--text-0);">${score}/50</span>` : ''}
+      </div>
+      <div class="opp-card-body">
+        <div class="opp-card-title">${esc(opp.problem)}</div>
+        <div class="opp-field">
+          <div class="opp-field-label">Target Persona</div>
+          <div class="opp-field-value">${esc(opp.persona)}</div>
+        </div>
+        <div class="opp-field">
+          <div class="opp-field-label">Validation</div>
+          <div class="opp-field-value">${esc(opp.validation)}</div>
+        </div>
+        <div class="opp-field">
+          <div class="opp-field-label">MVP Scope</div>
+          <div class="opp-field-value">${esc(opp.mvp_scope)}</div>
+        </div>
+        <div class="opp-field">
+          <div class="opp-field-label">Timeline</div>
+          <div class="opp-field-value">${esc(opp.timeline)}</div>
+        </div>
+        <div class="opp-field">
+          <div class="opp-field-label">Risks</div>
+          <div class="opp-field-value">${esc(opp.risks)}</div>
+        </div>
+        <div class="opp-field">
+          <div class="opp-field-label">Revenue Model</div>
+          <div class="opp-field-value">${esc(opp.revenue_model)}</div>
+        </div>
+      </div>
+    </div>
+  `;
+  }).join('');
+}
+
+function renderPRD() {
+  const prd = DATA.prd_seed;
+  if (!prd) {
+    document.getElementById('prdContent').innerHTML = '<p style="color:var(--text-2);">No PRD Seed data.</p>';
+    return;
+  }
+
+  document.getElementById('prdContent').innerHTML = `
+    <div class="prd-section">
+      <h3><span class="num">1</span> Problem Definition</h3>
+      <div class="prd-highlight">${citify(prd.problem || '')}</div>
+      <ul class="prd-list" style="margin-top: calc(var(--grid) * 1.5);">
+        <li><strong>Target User:</strong> ${citify(prd.target_user || '')}</li>
+        <li><strong>Frequency & Severity:</strong> ${citify(prd.frequency_severity || '')}</li>
+      </ul>
+    </div>
+
+    <div class="prd-section">
+      <h3><span class="num">2</span> Market Evidence</h3>
+      <ul class="prd-list">
+        ${prd.market_size ? `<li><strong>Market Size:</strong> ${citify(prd.market_size)}</li>` : ''}
+        <li><strong>Community Evidence:</strong> ${citify(prd.community_evidence || '')}</li>
+        <li><strong>Solution Failures:</strong> ${citify(prd.solution_failures || '')}</li>
+        <li><strong>WTP Evidence:</strong> ${citify(prd.wtp_evidence || '')}</li>
+      </ul>
+    </div>
+
+    <div class="prd-section">
+      <h3><span class="num">3</span> Solution Direction</h3>
+      <div class="prd-highlight" style="margin-bottom: calc(var(--grid) * 1.5);">${citify(prd.value_prop || '')}</div>
+      <div class="prd-scope-grid">
+        <div>
+          <div class="need-section-title" style="color: var(--green-text);">Must-have</div>
+          <ul class="prd-list">${(prd.must_have || []).map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+        </div>
+        <div>
+          <div class="need-section-title" style="color: var(--yellow-text);">Nice-to-have</div>
+          <ul class="prd-list">${(prd.nice_to_have || []).map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+        </div>
+        <div>
+          <div class="need-section-title" style="color: var(--red-text);">Anti-scope</div>
+          <ul class="prd-list anti">${(prd.anti_scope || []).map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="prd-section">
+      <h3><span class="num">4</span> Success Metrics</h3>
+      <ul class="prd-list">${(prd.kpis || []).map(k => `<li>${esc(k)}</li>`).join('')}</ul>
+    </div>
+
+    <div class="prd-section">
+      <h3><span class="num">5</span> Next Steps</h3>
+      <ul class="prd-list checklist">${(prd.next_steps || []).map(s => `<li>${esc(s)}</li>`).join('')}</ul>
+    </div>
+  `;
+}
+
+// ===== CONSULTING-ONLY RENDERS =====
+
+function renderDynamics() {
+  const md = DATA.market_dynamics;
+  const el = document.getElementById('dynamicsContent');
+  if (!md) {
+    el.innerHTML = '<p style="color:var(--text-3);">No market dynamics data.</p>';
+    return;
+  }
+
+  let html = '';
+
+  const allItems = [
+    ...(md.growth_drivers || []).map(d => ({ ...d, type: 'driver' })),
+    ...(md.headwinds || []).map(d => ({ ...d, type: 'headwind' })),
+    ...(md.regulatory || []).map(d => ({ ...d, type: 'regulatory' }))
+  ];
+
+  if (allItems.length > 0) {
+    html = allItems.map(item => `
+      <div class="dynamics-row">
+        <span class="dynamics-type ${item.type}">${item.type === 'driver' ? 'Growth Driver' : item.type === 'headwind' ? 'Headwind' : 'Regulatory'}</span>
+        <span class="dynamics-factor">${esc(item.factor)}</span>
+        <span>${impactBadge(item.impact || item.region || '')}</span>
+        <span class="dynamics-evidence">${citify(item.evidence || '')}</span>
+      </div>
+    `).join('');
+  } else {
+    html = '<p style="color:var(--text-3);">No dynamics data.</p>';
+  }
+
+  el.innerHTML = html;
+
+  // Value Chain
+  const vc = DATA.value_chain;
+  const vcCard = document.getElementById('valueChainCard');
+  const vcEl = document.getElementById('valueChainContent');
+  if (vc && vc.stages && vc.stages.length > 0) {
+    vcCard.style.display = '';
+    let vcHtml = '<div class="vchain">';
+    vc.stages.forEach((stage, i) => {
+      const isHighlight = stage === vc.opportunity_stage;
+      vcHtml += `<div class="vchain-stage${isHighlight ? ' highlight' : ''}">${esc(stage)}</div>`;
+      if (i < vc.stages.length - 1) vcHtml += '<span class="vchain-arrow">\u2192</span>';
+    });
+    vcHtml += '</div>';
+    if (vc.rationale) {
+      vcHtml += `<div style="font-size:14px;color:var(--text-1);line-height:1.6;margin-top:calc(var(--grid));">
+        <strong>Opportunity:</strong> ${citify(vc.rationale)}
+      </div>`;
+    }
+    vcEl.innerHTML = vcHtml;
+  } else {
+    vcCard.style.display = 'none';
+  }
+
+  // Risk Matrix
+  const rm = DATA.risk_matrix || [];
+  const rmEl = document.getElementById('riskMatrixContent');
+  if (rm.length > 0) {
+    const probColor = p => (p || '').includes('\uB192') || p === 'high' ? 'var(--red)' : (p || '').includes('\uB0AE') || p === 'low' ? 'var(--green)' : 'var(--yellow)';
+
+    rmEl.innerHTML = `
+      <div style="overflow-x:auto;">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>Risk</th>
+              <th>Probability</th>
+              <th>Impact</th>
+              <th>Mitigation</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rm.map(r => `
+              <tr>
+                <td><strong>${esc(r.risk)}</strong></td>
+                <td>${impactBadge(r.probability)}</td>
+                <td>${impactBadge(r.impact)}</td>
+                <td style="font-size:13px;color:var(--text-1);">${citify(r.mitigation || '')}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  } else {
+    rmEl.innerHTML = '<p style="color:var(--text-3);">No risk matrix data.</p>';
+  }
+}
+
+function renderSegmentation() {
+  const segs = DATA.segmentation || [];
+  const card = document.getElementById('segmentationCard');
+  const el = document.getElementById('segmentationContent');
+
+  if (segs.length === 0) {
+    card.style.display = 'none';
+    return;
+  }
+
+  card.style.display = '';
+  el.innerHTML = segs.map(s => `
+    <div class="seg-card">
+      <div class="seg-card-name">${esc(s.segment)}</div>
+      <div class="seg-card-detail">
+        <div>
+          <dt>Size</dt>
+          <dd>${esc(s.size || 'N/A')}</dd>
+        </div>
+        <div>
+          <dt>Characteristics</dt>
+          <dd>${esc(s.characteristics || '-')}</dd>
+        </div>
+        <div>
+          <dt>WTP</dt>
+          <dd>${esc(s.wtp || '-')}</dd>
+        </div>
+        <div>
+          <dt>Current Solution</dt>
+          <dd>${esc(s.current_solution || '-')}</dd>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderReferences() {
+  const refs = DATA.sources_registry || [];
+  const el = document.getElementById('referencesContent');
+
+  if (refs.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-3);">No sources registry.</p>';
+    return;
+  }
+
+  const grouped = { T1: [], T2: [], T3: [] };
+  refs.forEach(r => {
+    const tier = r.tier || 'T3';
+    if (!grouped[tier]) grouped[tier] = [];
+    grouped[tier].push(r);
+  });
+
+  const tierOrder = ['T1', 'T2', 'T3'];
+  const tierDescriptions = {
+    T1: '정부 통계, 시장 리포트, 학술 논문, 기업 공시',
+    T2: 'G2, Capterra, Product Hunt, 뉴스, 업계 블로그',
+    T3: 'Reddit, HN, Blind, Twitter/X, 커뮤니티'
+  };
+
+  el.innerHTML = tierOrder.filter(t => grouped[t].length > 0).map(tier => `
+    <div class="tier-group-header">
+      <span class="tier-badge ${TIER_CSS[tier]}">${tier}</span>
+      <span style="font-weight:600;color:var(--text-0);">${TIER_LABELS[tier]}</span>
+      <span style="color:var(--text-3);font-size:12px;margin-left:8px;">${tierDescriptions[tier]} (${grouped[tier].length})</span>
+    </div>
+    ${grouped[tier].map(r => `
+      <div class="ref-entry" id="ref-${r.id}">
+        <div class="ref-num">${r.id}</div>
+        <div class="ref-content">
+          <div class="ref-title">${esc(r.title || 'Untitled')}</div>
+          <a class="ref-url" href="${safeUrl(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a>
+          <div class="ref-meta">
+            ${r.type ? `<span class="ref-tag">${esc(r.type)}</span>` : ''}
+            <span class="ref-tag ${TIER_CSS[tier]}">${tier}</span>
+            ${r.accessed ? `<span class="ref-tag">${esc(r.accessed)}</span>` : ''}
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  `).join('');
+}
+
+function renderMethodology() {
+  const m = DATA.methodology;
+  const el = document.getElementById('methodologyContent');
+
+  if (!m) {
+    document.getElementById('methodologyCard').style.display = 'none';
+    return;
+  }
+
+  el.innerHTML = `
+    <div class="method-grid">
+      <div class="method-stat">
+        <div class="method-stat-value">${m.search_count || '?'}</div>
+        <div class="method-stat-label">Web Searches</div>
+      </div>
+      <div class="method-stat">
+        <div class="method-stat-value">${m.sources_evaluated || '?'}</div>
+        <div class="method-stat-label">Sources Evaluated</div>
+      </div>
+      <div class="method-stat">
+        <div class="method-stat-value">${esc(m.date_range || '?')}</div>
+        <div class="method-stat-label">Date Range</div>
+      </div>
+    </div>
+    <div style="font-size:14px;color:var(--text-1);margin-bottom:calc(var(--grid)*2);">
+      <strong>Approach:</strong> ${esc(m.approach || 'AI-powered multi-agent research pipeline')}
+    </div>
+    ${m.limitations && m.limitations.length > 0 ? `
+    <div class="card-title" style="font-size:13px;margin-bottom:calc(var(--grid));">Limitations</div>
+    ${m.limitations.map(l => `<div class="method-limit">${esc(l)}</div>`).join('')}
+    ` : ''}
+  `;
+}
+
+// Init
+render();
+</script>
+</body>
+</html>

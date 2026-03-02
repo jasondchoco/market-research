@@ -1,0 +1,17 @@
+# Real investigation outputs (personal data)
+# Exclude all research output directories except demo-sample
+ai-proposal-writing/
+ai-proposal-writing-junior/
+personal-productivity-wellbeing/
+solo-household-meal-management/
+
+# Internal docs
+implementation-plan.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

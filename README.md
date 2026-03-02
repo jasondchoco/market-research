@@ -122,23 +122,21 @@ Claude Code에서 실행:
 ### Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Team Leader (Main)                     │
-│              Orchestration · Compression · Output         │
-└────────────┬──────────────┬──────────────┬──────────────┘
-             │              │              │
-    ┌── Phase 1 ──┐  ┌── Phase 2 ──┐  ┌ Phase 3 ┐
-    │  (parallel)  │  │  (parallel)  │  │(sequential)│
-    │              │  │              │  │          │
-┌───┴───┐ ┌───┴──┐ ┌──┴───┐ ┌───┴──┐ ┌──┴──┐
-│ Trend │ │Comm- │ │ Deep │ │Local │ │Stra-│
-│Scanner│ │unity │ │Resea-│ │Spec- │ │te-  │
-│(haiku)│ │Analyst│ │rcher │ │ialist│ │gist │
-│       │ │(haiku)│ │(sonn)│ │(sonn)│ │(s/o)│
-└───────┘ └──────┘ └──────┘ └──────┘ └─────┘
-  PH,HN,X  Reddit   G2,Cap   Korea    Score
-  trends   Blind    terra    Market   card
-           불만분석  경쟁검증  특수성    PRD
+        ┌────────────────────────────────────────────────────┐
+        │               Team Leader (Main)                   │
+        │          Orchestrate · Compress · Output           │
+        └─┬───────────────────────┬────────────────────────┬─┘
+          │                       │                        │
+ ┌────────┴────────┐     ┌────────┴────────┐     ┌─────────┴─────────┐
+ │    Phase 1      │     │    Phase 2      │     │     Phase 3       │
+ │   (parallel)    │     │   (parallel)    │     │   (sequential)    │
+ ├────────┬────────┤     ├────────┬────────┤     ├───────────────────┤
+ │ Trend  │  Comm  │     │  Deep  │ Local  │     │    Strategist     │
+ │Scanner │Analyst │     │Resrch. │ Spec.  │     │                   │
+ │(haiku) │(haiku) │     │(sonnet)│(sonnet)│     │   sonnet / opus   │
+ └────────┴────────┘     └────────┴────────┘     └───────────────────┘
+  PH,HN,X  Reddit        G2,Cap   Korea          Scorecard
+  trends    Blind         terra    Market         Action Plan
 ```
 
 | Phase | Agents | Model | Tasks | Output |

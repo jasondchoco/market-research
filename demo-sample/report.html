@@ -1278,38 +1278,23 @@ const DATA = {
   "depth": "consulting",
   "locale": "kr",
   "agents_used": 5,
-  "executive_summary": "한국 836만 1인 가구의 식사 관리 시장을 분석한 결과, 한식 반찬 조합 최적화(36점/50), Meal Prep 자동 로테이션(33점), 식재료 낭비 방지(33점) 순으로 기회가 큰 것으로 나타났다. 글로벌 식사 계획 앱(Mealime, Plan to Eat 등)은 다수 존재하나 한식 1인분 DB를 갖춘 서비스는 전무하며, AI 기반 식사 계획 앱 시장이 CAGR 28.1%로 급성장 중이다. 배민 한그릇의 12배 성장(40만→463만건)이 1인 식사 수요를 실증하는 가운데, 직접조리 기반 소프트웨어 솔루션이 핵심 공백으로 확인되었다.",
+  "executive_summary": "한국 804.5만 1인 가구(통계청 2025.12, 전체 36.1%)의 식사 관리 시장을 분석한 결과, 한식 반찬 조합 최적화(36점/50), Meal Prep 자동 로테이션(33점), 식재료 낭비 방지(33점) 순으로 기회가 큰 것으로 나타났다. 글로벌 영양 앱 시장 $6.79B(Statista, 2026)·AI 식사 계획 앱 CAGR 28.1%로 급성장 중이나, 한식 1인분 DB를 갖춘 서비스는 전무하다. 배민 한그릇의 12배 성장(40만→463만건)이 1인 식사 수요를 실증하며, 직접조리 기반 소프트웨어 솔루션이 핵심 공백으로 확인되었다.",
+
   "market_sizing": {
-    "tam": {
-      "value": "$32.8B + $2.45B",
-      "basis": "글로벌 밀키트 배달($32.8B, 2024) + 글로벌 식사 계획 앱($2.45B, 2025)",
-      "source": "Grand View Research, Business Research Insights",
-      "ref": 1
-    },
-    "sam": {
-      "value": "약 2-3조 원",
-      "basis": "한국 1인 가구(34%) × HMR(7조원) + 앱 시장. 국내 온라인 식품 52조원, 밀키트 4,000억원",
-      "source": "식품음료신문, 푸드아이콘",
-      "ref": 4
-    },
-    "som": {
-      "value": "약 244억 원/년",
-      "basis": "815만 1인 가구 × 얼리어답터 5% × 월 5,000원 × 12개월. 보수적(1-2% 침투) 시 49-97억원",
-      "source": "자체 추정"
-    },
+    "tam": { "value": "$6.79B (영양앱) / $2.71B (식사계획앱)", "basis": "글로벌 Nutrition Apps $6.79B(2026, Statista T1 부분공개) + Meal Planning App $2.71B(2026, BRI T2). AI 식단앱 $972M(2024, T2). 솔로다이닝 전체 $268.7B(2024, T2).", "source": "Statista (T1, 2026), Business Research Insights (T2, 2026.02)", "ref": 38 },
+    "sam": { "value": "약 2-3조 원", "basis": "한국 804.5만 1인 가구(전체 36.1%, 통계청 2024 기준) × HMR 5.3조원(2023)→7조원 전망(2026, 유로모니터 인용). 1인 가구 식비 월 29.3만원(소비지출 163만원의 18.0%).", "source": "통계청 (T1, 2025.12), 프레시안/유로모니터 (T2, 2025)", "ref": 39 },
+    "som": { "value": "약 241억 원/년", "basis": "804.5만 1인 가구 × 얼리어답터 5% × 월 5,000원 × 12개월. 보수적(1-2% 침투) 시 48-97억원", "source": "자체 추정 (통계청 가구 수 기준)" },
     "cagr": "28.1%",
     "cagr_period": "2024-2034",
-    "korea_market": "온라인 식품 52조원, HMR 7조원, 밀키트 4,000억원(하향 조정)",
-    "data_quality": "medium"
+    "korea_market": "HMR 5.3조원(2023)→7조원(2026 전망). 1인 가구 연소득 3,423만원, 식비 월 29.3만원. 외식물가 6% 상승(식재료 3% 대비 2배)→가정 내 식사 수요 자극.",
+    "data_quality": "medium",
+    "data_quality_note": "한국 1인 가구 통계는 T1(통계청 2025.12) 확보. 글로벌 Nutrition Apps TAM은 T1(Statista 부분공개). Meal Planning App 전용 TAM($2.71B)은 T2만 존재. 한국 HMR 세부는 aT FIS 2024 보고서(T1) 발행 확인, 세부 수치 PDF 내 비공개로 미디어 보도(T2) 수치 사용."
   },
+
   "competitive_landscape": [
     {
       "category": "식사 계획 앱 (글로벌)",
-      "players": [
-        "Mealime",
-        "Plan to Eat",
-        "Eat This Much"
-      ],
+      "players": ["Mealime", "Plan to Eat", "Eat This Much"],
       "positioning": "가족·다인 가구 최적화",
       "price_range": "무료~$9.99/월",
       "strengths": "레시피 DB 방대, 장보기 리스트 자동 생성",
@@ -1317,10 +1302,7 @@ const DATA = {
     },
     {
       "category": "AI 식사 계획",
-      "players": [
-        "Ollie",
-        "Meal Chef AI"
-      ],
+      "players": ["Ollie", "Meal Chef AI"],
       "positioning": "AI 자동 플래닝",
       "price_range": "$12.99/월~",
       "strengths": "자동 계획 생성, 식이제한 반영",
@@ -1328,9 +1310,7 @@ const DATA = {
     },
     {
       "category": "밀키트 (글로벌)",
-      "players": [
-        "HelloFresh"
-      ],
+      "players": ["HelloFresh"],
       "positioning": "2인 이상 정기 배송",
       "price_range": "끼니당 $8-10",
       "strengths": "미국 시장 점유율 74%, 공급망 규모",
@@ -1338,11 +1318,7 @@ const DATA = {
     },
     {
       "category": "밀키트 (한국)",
-      "players": [
-        "피코크",
-        "요리하다",
-        "배민 한그릇"
-      ],
+      "players": ["피코크", "요리하다", "배민 한그릇"],
       "positioning": "마트·앱 배달 혼합",
       "price_range": "8,000-15,000원",
       "strengths": "기존 유통망 보유, 한국 소비자 접점",
@@ -1350,12 +1326,7 @@ const DATA = {
     },
     {
       "category": "영양 추적 앱",
-      "players": [
-        "YAZIO",
-        "Cal AI",
-        "눔",
-        "필라이즈"
-      ],
+      "players": ["YAZIO", "Cal AI", "눔", "필라이즈"],
       "positioning": "칼로리 기록·코칭",
       "price_range": "무료~$60+/월",
       "strengths": "대규모 사용자 기반, 건강 데이터 축적",
@@ -1363,10 +1334,7 @@ const DATA = {
     },
     {
       "category": "가계부/식비 관리",
-      "players": [
-        "토스",
-        "뱅크샐러드"
-      ],
+      "players": ["토스", "뱅크샐러드"],
       "positioning": "전체 재무 관리",
       "price_range": "무료",
       "strengths": "금융 데이터 자동 연동",
@@ -1375,6 +1343,7 @@ const DATA = {
   ],
   "competition_intensity": "중간",
   "market_gap_summary": "글로벌 식사 계획 앱은 다수 존재하나 한국 1인분 특화 플레이어가 부재. 한식 반찬 DB, 1인분 정량 환산, 잔재료 재활용 기능을 갖춘 서비스는 전무. 밀키트 물류는 대형사 독점이나 소프트웨어 레이어(레시피 큐레이션+장보기)는 명확한 공백.",
+
   "needs": [
     {
       "id": 1,
@@ -1383,35 +1352,16 @@ const DATA = {
       "frequency": "높음",
       "workaround": "냉동 소분(수동), 지퍼백 관리, 대용량 구매 후 폐기",
       "existing_solutions": [
-        {
-          "name": "Mealime",
-          "pricing": "무료/$2.99/월",
-          "target": "개인/가족",
-          "limitation": "1인분 UI 부재, 서빙 2·4·6인분만"
-        },
-        {
-          "name": "Plan to Eat",
-          "pricing": "$5.95/월",
-          "target": "가족",
-          "limitation": "BYO 레시피 모델, 소분 계산 없음"
-        },
-        {
-          "name": "Samsung Food",
-          "pricing": "무료",
-          "target": "대중",
-          "limitation": "레시피 스케일링이 배수 단위만"
-        }
+        { "name": "Mealime", "pricing": "무료/$2.99/월", "target": "개인/가족", "limitation": "1인분 UI 부재, 서빙 2·4·6인분만" },
+        { "name": "Plan to Eat", "pricing": "$5.95/월", "target": "가족", "limitation": "BYO 레시피 모델, 소분 계산 없음" },
+        { "name": "Samsung Food", "pricing": "무료", "target": "대중", "limitation": "레시피 스케일링이 배수 단위만" }
       ],
       "failure_reason": "비즈니스 모델상 가족/다인이 LTV 높아 1인분 최적화 인센티브 부재. 재고-유통기한 연동 없음.",
       "gap_reality": "real",
       "gap_definition": "Mealime 커뮤니티에서 1인분 지원이 최다 요청 기능. 3회 이상 검색에도 1인 가구 식재료 낭비 자동 방지 서비스 미발견.",
       "local_specifics": "한식 반찬 3~5종 조합이 낭비 가중. 대형마트 소포장이 2인분 기준.",
       "wtp_evidence": "\"낭비 30-40% 줄이면 월 $5-10 절약 효과로 회수 가능\"",
-      "sources": [
-        "https://supperstruck.com/food-waste-and-the-single-person-household/",
-        "https://www.foodnews.co.kr/news/articleView.html?idxno=95574",
-        "https://news.ycombinator.com/item?id=32316604"
-      ]
+      "sources": ["https://supperstruck.com/food-waste-and-the-single-person-household/", "https://www.foodnews.co.kr/news/articleView.html?idxno=95574", "https://news.ycombinator.com/item?id=32316604"]
     },
     {
       "id": 2,
@@ -1420,35 +1370,16 @@ const DATA = {
       "frequency": "높음",
       "workaround": "배민 한그릇(배달), 4인분 레시피 수동 환산, 유튜브 자취요리",
       "existing_solutions": [
-        {
-          "name": "HelloFresh",
-          "pricing": "끼니당 $8-10",
-          "target": "가족(2인+)",
-          "limitation": "1인 전용 플랜 없음, 미국 시장 점유율 74%"
-        },
-        {
-          "name": "배민 한그릇",
-          "pricing": "6,000-12,000원",
-          "target": "1인 배달",
-          "limitation": "SKU 제한, 직접조리 니즈 미해결"
-        },
-        {
-          "name": "Eat This Much",
-          "pricing": "무료~$8.99/월",
-          "target": "개인",
-          "limitation": "한국식 식단·재료 미지원"
-        }
+        { "name": "HelloFresh", "pricing": "끼니당 $8-10", "target": "가족(2인+)", "limitation": "1인 전용 플랜 없음, 미국 시장 점유율 74%" },
+        { "name": "배민 한그릇", "pricing": "6,000-12,000원", "target": "1인 배달", "limitation": "SKU 제한, 직접조리 니즈 미해결" },
+        { "name": "Eat This Much", "pricing": "무료~$8.99/월", "target": "개인", "limitation": "한국식 식단·재료 미지원" }
       ],
       "failure_reason": "밀키트 콜드체인 고정비 구조상 1인분은 마진 음수. 레시피 DB가 4인분 기반 저장.",
       "gap_reality": "partial",
       "gap_definition": "물류 레이어는 대형사(배민, 피코크) 독점으로 Red Ocean. 소프트웨어 레이어(레시피 큐레이션+재료 리스트)는 Real Gap.",
       "local_specifics": "배민 한그릇 12배 성장(40만→463만건)이 수요 실증. 국/탕/찌개류 61.4%가 1인분 소분 특히 어려움.",
       "wtp_evidence": "\"1인분 정량+신선도 보장이면 현재가격+10-20% 프리미엄 수용\"",
-      "sources": [
-        "https://www.kpinews.kr/newsView/1065597054968162",
-        "https://www.lovefoodhatewaste.com/blog/meal-planning-one",
-        "https://www.foodnews.news/news/article.html?no=1344924"
-      ]
+      "sources": ["https://www.kpinews.kr/newsView/1065597054968162", "https://www.lovefoodhatewaste.com/blog/meal-planning-one", "https://www.foodnews.news/news/article.html?no=1344924"]
     },
     {
       "id": 3,
@@ -1457,35 +1388,16 @@ const DATA = {
       "frequency": "높음",
       "workaround": "소스/가니시 변화, 유튜브 자취요리 채널, 매주 수동 계획",
       "existing_solutions": [
-        {
-          "name": "MealPrepPro",
-          "pricing": "$9.99/월",
-          "target": "보디빌더/헬스",
-          "limitation": "일반 식단 다양성 부족, 한식 미지원"
-        },
-        {
-          "name": "eMeals",
-          "pricing": "$4.99-9.99/월",
-          "target": "가족",
-          "limitation": "주간 메뉴 고정, 매주 신규 계획 강요"
-        },
-        {
-          "name": "Paprika",
-          "pricing": "$4.99(앱)",
-          "target": "개인",
-          "limitation": "수동 입력 중심, 자동 로테이션 없음"
-        }
+        { "name": "MealPrepPro", "pricing": "$9.99/월", "target": "보디빌더/헬스", "limitation": "일반 식단 다양성 부족, 한식 미지원" },
+        { "name": "eMeals", "pricing": "$4.99-9.99/월", "target": "가족", "limitation": "주간 메뉴 고정, 매주 신규 계획 강요" },
+        { "name": "Paprika", "pricing": "$4.99(앱)", "target": "개인", "limitation": "수동 입력 중심, 자동 로테이션 없음" }
       ],
       "failure_reason": "모든 앱이 '계획→실행' 선형 플로우. 기분 기반 추천, leftover linkage, 습관 스택 설계 부재.",
       "gap_reality": "real",
       "gap_definition": "자동 로테이션+재료 재활용 기능을 메인으로 포지셔닝한 플레이어 전무. AI 식사 계획 앱 CAGR 28.1%.",
       "local_specifics": "한식 조리 복잡도가 서양식 대비 높아 meal prep 진입장벽 높음. '이번 주 반찬 3종 자동 조합' 한국 특수 수요.",
       "wtp_evidence": "\"월 $4-5 앱 구독 의향\", \"meal prep 고통스러우면 돈 내고 해결\"",
-      "sources": [
-        "https://www.trainwell.net/blog/avoid-meal-prep-burnout",
-        "https://news.ycombinator.com/item?id=40493614",
-        "https://kateeskuri.substack.com/p/meal-prep-for-people-who-hate-meal"
-      ]
+      "sources": ["https://www.trainwell.net/blog/avoid-meal-prep-burnout", "https://news.ycombinator.com/item?id=40493614", "https://kateeskuri.substack.com/p/meal-prep-for-people-who-hate-meal"]
     },
     {
       "id": 4,
@@ -1494,28 +1406,15 @@ const DATA = {
       "frequency": "높음",
       "workaround": "배민/쿠팡이츠 쿠폰 활용, 직접조리 회귀, 가계부 사후 기록",
       "existing_solutions": [
-        {
-          "name": "뱅크샐러드",
-          "pricing": "무료",
-          "target": "전체",
-          "limitation": "사후 기록만, 실시간 식비 최적화 미지원"
-        },
-        {
-          "name": "토스",
-          "pricing": "무료",
-          "target": "전체",
-          "limitation": "카테고리 분류만, 식사 결정 보조 없음"
-        }
+        { "name": "뱅크샐러드", "pricing": "무료", "target": "전체", "limitation": "사후 기록만, 실시간 식비 최적화 미지원" },
+        { "name": "토스", "pricing": "무료", "target": "전체", "limitation": "카테고리 분류만, 식사 결정 보조 없음" }
       ],
       "failure_reason": "배달앱은 GMV 극대화 인센티브로 절약 도구 = 자기모순. 식비+레시피+마트 가격 API 통합 앱 미존재.",
       "gap_reality": "real",
       "gap_definition": "'오늘 집밥 vs 배달 실질 비용 비교' 실시간 도구가 시장에 존재하지 않음.",
       "local_specifics": "배달비 3,000-5,000원 + 최소주문금액 15,000원 구조. 배달앱 3사 수수료 압박으로 가맹점 1인분 메뉴 기피.",
       "wtp_evidence": "\"직접조리로 월 50만원→30만원 절약 체감 시 전환 의향 높음\" (도구 자체 구독료 WTP는 불확실)",
-      "sources": [
-        "https://www.teamblind.com/kr/post/1%EC%9D%B8%EA%B0%80%EA%B5%AC-%EC%8B%9D%EB%B9%84-%EC%A4%84%EC%9D%B4%EB%8A%94-%ED%8C%81-%EC%9E%88%EC%96%B4-x4buMf10",
-        "https://www.foodnews.news/news/article.html?no=1344924"
-      ]
+      "sources": ["https://www.teamblind.com/kr/post/1%EC%9D%B8%EA%B0%80%EA%B5%AC-%EC%8B%9D%EB%B9%84-%EC%A4%84%EC%9D%B4%EB%8A%94-%ED%8C%81-%EC%9E%88%EC%96%B4-x4buMf10", "https://www.foodnews.news/news/article.html?no=1344924"]
     },
     {
       "id": 5,
@@ -1524,35 +1423,16 @@ const DATA = {
       "frequency": "높음",
       "workaround": "YAZIO/Cal AI 기록, 유튜브, 필라이즈 영양 추적",
       "existing_solutions": [
-        {
-          "name": "YAZIO",
-          "pricing": "무료~$9.99/월",
-          "target": "개인",
-          "limitation": "기록 중심, 사전 식사 설계 미약"
-        },
-        {
-          "name": "필라이즈",
-          "pricing": "무료~프리미엄",
-          "target": "한국 개인",
-          "limitation": "기록 특화, 식사 준비 계획 부재 (누적 140만)"
-        },
-        {
-          "name": "눔",
-          "pricing": "$59+/월",
-          "target": "개인(코칭)",
-          "limitation": "코칭 중심, 구체적 조리 가이드 없음"
-        }
+        { "name": "YAZIO", "pricing": "무료~$9.99/월", "target": "개인", "limitation": "기록 중심, 사전 식사 설계 미약" },
+        { "name": "필라이즈", "pricing": "무료~프리미엄", "target": "한국 개인", "limitation": "기록 특화, 식사 준비 계획 부재 (누적 140만)" },
+        { "name": "눔", "pricing": "$59+/월", "target": "개인(코칭)", "limitation": "코칭 중심, 구체적 조리 가이드 없음" }
       ],
       "failure_reason": "영양 추적과 레시피 추천이 분리된 앱에 존재. 한국 식재료 DB(반찬 조합, 국물 영양 계산) 전무.",
       "gap_reality": "partial",
       "gap_definition": "글로벌 대형 플레이어 장악. 한국 로컬(필라이즈 선점 중) 특화 시 차별화 가능.",
       "local_specifics": "2026 '혼웰식' 트렌드. 덮밥+8.2%, 샐러드+22.2%, 비빔밥+13.7% 한 그릇 영양 균형식 급증.",
       "wtp_evidence": "\"월 10,000-15,000원 건강앱 구독\" (가장 높은 WTP 세그먼트)",
-      "sources": [
-        "https://www.unicornfactory.co.kr/article/2026021316172476103",
-        "https://blog.nasmedia.co.kr/entry/2601-lifestyletrend-eat",
-        "https://www.foodnews.co.kr/news/articleView.html?idxno=95574"
-      ]
+      "sources": ["https://www.unicornfactory.co.kr/article/2026021316172476103", "https://blog.nasmedia.co.kr/entry/2601-lifestyletrend-eat", "https://www.foodnews.co.kr/news/articleView.html?idxno=95574"]
     },
     {
       "id": 6,
@@ -1561,43 +1441,26 @@ const DATA = {
       "frequency": "중간",
       "workaround": "유튜브 자취요리, 네이버 레시피, 수동 반찬 계획",
       "existing_solutions": [
-        {
-          "name": "글로벌 식단 앱 전체",
-          "pricing": "다양",
-          "target": "글로벌",
-          "limitation": "한식 반찬 DB 없음, 1인분 환산 불가"
-        },
-        {
-          "name": "식신",
-          "pricing": "무료",
-          "target": "한국 맛집",
-          "limitation": "혼밥 친화 식당 필터 없음"
-        }
+        { "name": "글로벌 식단 앱 전체", "pricing": "다양", "target": "글로벌", "limitation": "한식 반찬 DB 없음, 1인분 환산 불가" },
+        { "name": "식신", "pricing": "무료", "target": "한국 맛집", "limitation": "혼밥 친화 식당 필터 없음" }
       ],
       "failure_reason": "한식 1인분 환산은 단순 나눗셈 불가(국 염도-양 비선형). 글로벌 앱이 한식 DB 투자 동기 없음(한국 시장 ROI 불충분).",
       "gap_reality": "real",
-      "gap_definition": "한국 로컬 1인 식사 전용 앱 사실상 전무. 2026년 836만 1인 가구. 글로벌 앱의 구조적 한식 투자 불가가 영구적 해자.",
+      "gap_definition": "한국 로컬 1인 식사 전용 앱 사실상 전무. 804.5만 1인 가구(2024, 통계청). 글로벌 앱의 구조적 한식 투자 불가가 영구적 해자.",
       "local_specifics": "반찬 재활용 '잔반 레시피' 고유 니즈. 포장쓰레기 최소화 수요(밀키트 이용자 50%+ 1순위). 혼밥 장소 정보 통합.",
       "wtp_evidence": "\"월 3,900-9,900원 구독 수용 가격대\" (B2C 앱 참조: 필라이즈, 인아웃)",
-      "sources": [
-        "https://www.clien.net/service/board/park/18019894",
-        "https://www.digitaltoday.co.kr/news/articleView.html?idxno=104602",
-        "https://www.foodbank.co.kr/news/articleView.html?idxno=67253"
-      ]
+      "sources": ["https://www.clien.net/service/board/park/18019894", "https://www.digitaltoday.co.kr/news/articleView.html?idxno=104602", "https://www.foodbank.co.kr/news/articleView.html?idxno=67253"]
     }
   ],
+
   "scorecard": [
     {
       "rank": 1,
       "problem": "한식 1인분 반찬 조합 최적화",
-      "market": 8,
-      "urgency": 7,
-      "competition": 3,
-      "barrier": 3,
-      "wtp": 7,
+      "market": 8, "urgency": 7, "competition": 3, "barrier": 3, "wtp": 7,
       "total": 36,
       "rationale": {
-        "시장성 8/10": "836만 1인 가구 전체가 잠재 시장. SAM 2-3조원 중 반찬 조합 니즈는 한식 문화에서 구조적 발생. 글로벌 앱 투자 동기 없어 내수 독점 가능. [4][5]",
+        "시장성 8/10": "804.5만 1인 가구 전체가 잠재 시장. SAM 2-3조원 중 반찬 조합 니즈는 한식 문화에서 구조적 발생. 글로벌 앱 투자 동기 없어 내수 독점 가능. [4][5]",
         "긴급성 7/10": "유튜브 자취요리 대규모 구독자가 잠재 수요 간접 증거. 잔반 재활용·포장쓰레기 최소화 반복 니즈. [14][15]",
         "경쟁강도 3/10": "글로벌 경쟁자 전원 한식 DB 미보유. 식신은 1인분 필터 없음. 실질 경쟁자 부재. [16]",
         "진입장벽 3/10": "한식 1인분 환산 로직 DB 구축 필요하나 SW 전용 앱 단독 진입 가능. 물류 불필요. [Source: 자체 분석]",
@@ -1607,11 +1470,7 @@ const DATA = {
     {
       "rank": 2,
       "problem": "Meal Prep 자동 로테이션",
-      "market": 7,
-      "urgency": 7,
-      "competition": 4,
-      "barrier": 4,
-      "wtp": 7,
+      "market": 7, "urgency": 7, "competition": 4, "barrier": 4, "wtp": 7,
       "total": 33,
       "rationale": {
         "시장성 7/10": "AI 식사 계획 앱 CAGR 28.1% 고성장. 글로벌 TAM 존재. SOM 산출이 한국 내수 집중. [3]",
@@ -1624,11 +1483,7 @@ const DATA = {
     {
       "rank": 3,
       "problem": "식재료 낭비 자동 방지",
-      "market": 7,
-      "urgency": 8,
-      "competition": 5,
-      "barrier": 4,
-      "wtp": 7,
+      "market": 7, "urgency": 8, "competition": 5, "barrier": 4, "wtp": 7,
       "total": 33,
       "rationale": {
         "시장성 7/10": "1인 가구 식재료 낭비 30-40%. 대형마트 소포장 2인분 구조가 구조적 원인. Mealime에서 1인분 최다 요청 기능. [9][36]",
@@ -1641,11 +1496,7 @@ const DATA = {
     {
       "rank": 4,
       "problem": "배달비+외식비 절감 도구",
-      "market": 6,
-      "urgency": 8,
-      "competition": 3,
-      "barrier": 5,
-      "wtp": 5,
+      "market": 6, "urgency": 8, "competition": 3, "barrier": 5, "wtp": 5,
       "total": 31,
       "rationale": {
         "시장성 6/10": "독립 구독 서비스 전환 시장 불명확. 토스/뱅크샐러드 무료 사후 기록 존재.",
@@ -1658,11 +1509,7 @@ const DATA = {
     {
       "rank": 5,
       "problem": "영양 균형 식사 가이드 (공백 세그먼트)",
-      "market": 5,
-      "urgency": 6,
-      "competition": 4,
-      "barrier": 5,
-      "wtp": 7,
+      "market": 5, "urgency": 6, "competition": 4, "barrier": 5, "wtp": 7,
       "total": 29,
       "rationale": {
         "시장성 5/10": "필라이즈(140만) 선점 중. 차별화 포인트가 한식 DB만으로 한계.",
@@ -1675,11 +1522,7 @@ const DATA = {
     {
       "rank": 6,
       "problem": "1인분 레시피+정량 밀키트 (SW 레이어)",
-      "market": 7,
-      "urgency": 7,
-      "competition": 6,
-      "barrier": 6,
-      "wtp": 6,
+      "market": 7, "urgency": 7, "competition": 6, "barrier": 6, "wtp": 6,
       "total": 28,
       "rationale": {
         "시장성 7/10": "배민 한그릇 12배 성장이 수요 검증. SW 단독은 수익화 경로 제한적. [20]",
@@ -1690,6 +1533,7 @@ const DATA = {
       }
     }
   ],
+
   "action_plan": [
     {
       "problem": "한식 1인분 반찬 조합 최적화",
@@ -1719,503 +1563,121 @@ const DATA = {
       "revenue_model": "무료(재료 5개/주 3회) + 유료 4,900원(무제한+유통기한 알림+주간 낭비 리포트)"
     }
   ],
+
   "prd_seed": {
     "problem": "한국 1인 가구는 한식 반찬 3-5종 조합 문화와 대형마트 2인분 기준 소포장 구조로 인해 구조적 식재료 낭비와 반복적 메뉴 결정 피로를 동시에 겪고 있으나, 이를 해결하는 디지털 도구가 전무하다.",
     "target_user": "서울·수도권 거주 25-35세 직장인 1인 가구. 주 3-4회 이상 직접 조리. 유튜브 자취요리 또는 네이버 레시피 사용 경험.",
     "frequency_severity": "주 3-4회(조리 시마다 반찬 조합 결정). 식재료 낭비 30-40%, 월 수만원 금전 손실. 단순 불편이 아닌 경제적 손실.",
-    "market_size": "TAM $35B(글로벌 밀키트+앱), SAM 2-3조원(한국 1인 HMR+앱), SOM 244억원/년(얼리어답터 5%×월 5,000원)",
+    "market_size": "TAM $6.79B(영양앱, Statista T1 2026) / $2.71B(식사계획앱, T2 2026), SAM 2-3조원(한국 804.5만 1인가구×HMR 7조원 전망, 통계청 T1 2025.12), SOM 241억원/년(얼리어답터 5%×월 5,000원)",
     "community_evidence": "블라인드: 1인가구 식비 관리 어려움[13], 클리앙: 혼밥 식재료 소포장 부재[14][15], 한국 밀키트 2인분 기준 유지[8], 배민 한그릇 12배 성장으로 수요 실증[20]",
     "solution_failures": "Mealime/Plan to Eat: 1인분 UI 부재. HelloFresh: 1인분 불가. 식신: 혼밥 필터 없음. 글로벌 AI앱: 한식 DB 없음. 근본 원인: 가족/다인이 LTV 높아 1인분 투자 동기 없음.",
     "wtp_evidence": "월 3,900-9,900원 구독 수용(한국 B2C 앱 가격대). 글로벌 유사앱 실제 결제 $4.99-$9.99/월. 낭비 30-40% 절감 시 $5-10/월 ROI.",
     "value_prop": "냉장고에 있는 재료를 입력하면, 오늘 먹을 한식 반찬 3종 조합을 자동으로 제안하고 잔재료 재활용까지 계획해준다.",
-    "must_have": [
-      "냉장고 재료 입력 → 한식 반찬 3종 조합 추천 (재료 중복 최적화)",
-      "잔재료 재활용 linkage (남은 재료 다음 추천 우선 배정)",
-      "한식 1인분 정량 환산 표시 (국/찌개 염도-양 비선형 반영)"
-    ],
-    "nice_to_have": [
-      "유통기한 임박 알림",
-      "주간 낭비 절약 금액 리포트",
-      "바코드 스캔 재료 자동 입력"
-    ],
-    "anti_scope": [
-      "영양 칼로리 계산/코칭 (영양 앱과 충돌 방지)",
-      "장보기 목록 자동 생성/마트 연동 (물류 미진입)",
-      "배달 앱 연동 (핵심 가치 반대 방향)",
-      "4인 가족/다인 레시피 (1인 전용 유지)",
-      "SNS 공유/커뮤니티 기능 (초기 집중)"
-    ],
-    "kpis": [
-      "주간 활성 사용자(WAU) 재방문율 40%+",
-      "재료 입력→추천 수용률 60%+",
-      "월 구독 전환율 8%+(무료 사용자 중)",
-      "NPS 30+"
-    ],
-    "next_steps": [
-      "사용자 인터뷰 15명 (자취 직장인, 한식 직접 조리 주 3회+)",
-      "랜딩페이지 이메일 등록 200명 검증",
-      "한식 레시피 DB 300개 수집 + 1인분 환산 로직 설계",
-      "경쟁사 심층 분석: Mealime/Samsung Food 사용자 인터뷰 5명",
-      "가격 A/B 테스트: 3,900원 / 6,900원 / 9,900원"
-    ]
+    "must_have": ["냉장고 재료 입력 → 한식 반찬 3종 조합 추천 (재료 중복 최적화)", "잔재료 재활용 linkage (남은 재료 다음 추천 우선 배정)", "한식 1인분 정량 환산 표시 (국/찌개 염도-양 비선형 반영)"],
+    "nice_to_have": ["유통기한 임박 알림", "주간 낭비 절약 금액 리포트", "바코드 스캔 재료 자동 입력"],
+    "anti_scope": ["영양 칼로리 계산/코칭 (영양 앱과 충돌 방지)", "장보기 목록 자동 생성/마트 연동 (물류 미진입)", "배달 앱 연동 (핵심 가치 반대 방향)", "4인 가족/다인 레시피 (1인 전용 유지)", "SNS 공유/커뮤니티 기능 (초기 집중)"],
+    "kpis": ["주간 활성 사용자(WAU) 재방문율 40%+", "재료 입력→추천 수용률 60%+", "월 구독 전환율 8%+(무료 사용자 중)", "NPS 30+"],
+    "next_steps": ["사용자 인터뷰 15명 (자취 직장인, 한식 직접 조리 주 3회+)", "랜딩페이지 이메일 등록 200명 검증", "한식 레시피 DB 300개 수집 + 1인분 환산 로직 설계", "경쟁사 심층 분석: Mealime/Samsung Food 사용자 인터뷰 5명", "가격 A/B 테스트: 3,900원 / 6,900원 / 9,900원"]
   },
+
   "sources_registry": [
-    {
-      "id": 1,
-      "url": "https://www.grandviewresearch.com/industry-analysis/meal-kit-delivery-services-market",
-      "title": "Meal Kit Delivery Services Market Size & Share Report, 2033",
-      "type": "report",
-      "tier": "T1",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 2,
-      "url": "https://www.businessresearchinsights.com/market-reports/meal-planning-app-market-113013/",
-      "title": "Meal Planning App Market Growth, Trend & Size | CAGR 10.5%",
-      "type": "report",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 3,
-      "url": "https://market.us/report/ai-driven-meal-planning-apps-market/",
-      "title": "AI-driven Meal Planning Apps Market Size | CAGR 28.1%",
-      "type": "report",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 4,
-      "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=103742",
-      "title": "2026 식품산업 전망 - 식품음료신문",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 5,
-      "url": "https://www.foodbank.co.kr/news/articleView.html?idxno=67253",
-      "title": "2026 외식 트렌드 - 식품외식경제",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 6,
-      "url": "https://blog.opensurvey.co.kr/article/soloeconomy-2022-2/",
-      "title": "1인가구 식생활 트렌드 - 오픈서베이",
-      "type": "report",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 7,
-      "url": "https://www.foodnews.co.kr/news/articleView.html?idxno=95574",
-      "title": "1인가구 식생활 니즈 5가지",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 8,
-      "url": "https://www.kpinews.kr/newsView/1065597054968162",
-      "title": "1인가구 증가에도 밀키트는 '기본 2인'",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 9,
-      "url": "https://supperstruck.com/food-waste-and-the-single-person-household/",
-      "title": "Food Waste and the Single Person Household",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 10,
-      "url": "https://news.ycombinator.com/item?id=32316604",
-      "title": "HN: Meal Planning Apps Discussion",
-      "type": "forum",
-      "tier": "T3",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 11,
-      "url": "https://news.ycombinator.com/item?id=40493614",
-      "title": "HN: Meal Planning Mental Load",
-      "type": "forum",
-      "tier": "T3",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 12,
-      "url": "https://www.producthunt.com/products/mealpreppro/alternatives",
-      "title": "MealPrepPro Alternatives - Product Hunt",
-      "type": "review",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 13,
-      "url": "https://www.teamblind.com/kr/post/1%EC%9D%B8%EA%B0%80%EA%B5%AC-%EC%8B%9D%EB%B9%84-%EC%A4%84%EC%9D%B4%EB%8A%94-%ED%8C%81-%EC%9E%88%EC%96%B4-x4buMf10",
-      "title": "블라인드: 1인가구 식비 줄이는 팁",
-      "type": "forum",
-      "tier": "T3",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 14,
-      "url": "https://www.clien.net/service/board/park/18019894",
-      "title": "클리앙: 혼밥 차별 경험",
-      "type": "forum",
-      "tier": "T3",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 15,
-      "url": "https://www.clien.net/service/board/park/15330324",
-      "title": "클리앙: 자취생 식비 절약 전략",
-      "type": "forum",
-      "tier": "T3",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 16,
-      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=104602",
-      "title": "1인가구 식사관리 앱 현황",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 17,
-      "url": "https://www.lovefoodhatewaste.com/blog/meal-planning-one",
-      "title": "Meal Planning for One",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 18,
-      "url": "https://www.trainwell.net/blog/avoid-meal-prep-burnout",
-      "title": "Avoid Meal Prep Burnout",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 19,
-      "url": "https://medium.com/@jacisoulkis/i-hate-meal-prepping-and-im-tired-of-pretending-it-doesn-t-suck-6ae5c1ea5319",
-      "title": "I Hate Meal Prepping",
-      "type": "article",
-      "tier": "T3",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 20,
-      "url": "https://www.foodnews.news/news/article.html?no=1344924",
-      "title": "배민 한그릇 1인분 메뉴 강화",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 21,
-      "url": "https://www.garagegymreviews.com/best-meal-delivery-service-for-singles",
-      "title": "Best Meal Delivery Service for Singles",
-      "type": "review",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 22,
-      "url": "https://boards.weddingbee.com/topic/how-much-would-you-pay-to-have-someone-cook-your-meals-each-week/",
-      "title": "WTP for Meal Prep Service",
-      "type": "forum",
-      "tier": "T3",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 23,
-      "url": "https://www.withbuyer.com/news/articleView.html?idxno=21481",
-      "title": "밀키트 가격/품질 분석",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 24,
-      "url": "https://blog.opensurvey.co.kr/trendreport/youth-soloeconomy-2025/",
-      "title": "청년 1인가구 트렌드 2025 - 오픈서베이",
-      "type": "report",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 25,
-      "url": "https://news.mt.co.kr/mtview.php?no=2022070614521115498",
-      "title": "귀찮아 밥 거른다 서울 1인가구 - 머니투데이",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 26,
-      "url": "https://www.unicornfactory.co.kr/article/2026021316172476103",
-      "title": "요즘 뜨는 다이어트 스타트업 앱 - 유니콘팩토리",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 27,
-      "url": "https://blog.nasmedia.co.kr/entry/2601-lifestyletrend-eat",
-      "title": "2026 혼웰식 트렌드 - 나스미디어",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 28,
-      "url": "https://www.tandanji.me/",
-      "title": "탄단지박스 구독 서비스",
-      "type": "review",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 29,
-      "url": "https://tracxn.com/d/companies/hellofresh/__6Sz4mCoqD_LALvi1RL3is1YtB3f2eGhUx7F8yjDnwsI",
-      "title": "HelloFresh Company Profile - Tracxn",
-      "type": "report",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 30,
-      "url": "https://www.foodicon.co.kr/news/articleView.html?idxno=11912",
-      "title": "밀키트 시장 전망 하향 - 푸드아이콘",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 31,
-      "url": "https://meatinsight.co.kr/bbs/board.php?bo_table=w3_1&wr_id=30",
-      "title": "밀키트 51% 나트륨 초과 - 미트인사이트",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 32,
-      "url": "https://www.towardshealthcare.com/insights/diet-and-nutrition-apps-market-sizing",
-      "title": "Diet & Nutrition Apps Market | CAGR 16.64%",
-      "type": "report",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 33,
-      "url": "https://www.getsauce.com/post/2025-restaurant-trend-solo-dining-multiplying-profits",
-      "title": "2025 Restaurant Trend: Solo Dining",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 34,
-      "url": "https://kateeskuri.substack.com/p/meal-prep-for-people-who-hate-meal",
-      "title": "Meal Prep for People Who Hate Meal Prepping",
-      "type": "article",
-      "tier": "T3",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 35,
-      "url": "https://workweeklunch.com/meal-prep-for-one/",
-      "title": "Meal Prep for One Guide",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 36,
-      "url": "https://conservefood.org/2025/07/02/6-meal-planning-recipes-apps-to-simplify-cooking-and-cut-food-waste/",
-      "title": "Meal Planning Apps to Cut Food Waste",
-      "type": "article",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    },
-    {
-      "id": 37,
-      "url": "https://producthunt.com/posts/meals-app",
-      "title": "Meals App - Product Hunt",
-      "type": "review",
-      "tier": "T2",
-      "accessed": "2026-03-03"
-    }
+    { "id": 1, "url": "https://www.grandviewresearch.com/industry-analysis/meal-kit-delivery-services-market", "title": "Meal Kit Delivery Services Market Size & Share Report, 2033", "type": "report", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 2, "url": "https://www.businessresearchinsights.com/market-reports/meal-planning-app-market-113013/", "title": "Meal Planning App Market Growth, Trend & Size | CAGR 10.5%", "type": "report", "tier": "T2", "published": "2026.02", "accessed": "2026-03-03" },
+    { "id": 3, "url": "https://market.us/report/ai-driven-meal-planning-apps-market/", "title": "AI-driven Meal Planning Apps Market Size | CAGR 28.1%", "type": "report", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 4, "url": "https://www.thinkfood.co.kr/news/articleView.html?idxno=103742", "title": "2026 식품산업 전망 - 식품음료신문", "type": "article", "tier": "T2", "published": "2026", "accessed": "2026-03-03" },
+    { "id": 5, "url": "https://www.foodbank.co.kr/news/articleView.html?idxno=67253", "title": "2026 외식 트렌드 - 식품외식경제", "type": "article", "tier": "T2", "published": "2026", "accessed": "2026-03-03" },
+    { "id": 6, "url": "https://blog.opensurvey.co.kr/article/soloeconomy-2022-2/", "title": "1인가구 식생활 트렌드 - 오픈서베이", "type": "report", "tier": "T2", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 7, "url": "https://www.foodnews.co.kr/news/articleView.html?idxno=95574", "title": "1인가구 식생활 니즈 5가지", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 8, "url": "https://www.kpinews.kr/newsView/1065597054968162", "title": "1인가구 증가에도 밀키트는 '기본 2인'", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 9, "url": "https://supperstruck.com/food-waste-and-the-single-person-household/", "title": "Food Waste and the Single Person Household", "type": "article", "tier": "T2", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 10, "url": "https://news.ycombinator.com/item?id=32316604", "title": "HN: Meal Planning Apps Discussion", "type": "forum", "tier": "T3", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 11, "url": "https://news.ycombinator.com/item?id=40493614", "title": "HN: Meal Planning Mental Load", "type": "forum", "tier": "T3", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 12, "url": "https://www.producthunt.com/products/mealpreppro/alternatives", "title": "MealPrepPro Alternatives - Product Hunt", "type": "review", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 13, "url": "https://www.teamblind.com/kr/post/1%EC%9D%B8%EA%B0%80%EA%B5%AC-%EC%8B%9D%EB%B9%84-%EC%A4%84%EC%9D%B4%EB%8A%94-%ED%8C%81-%EC%9E%88%EC%96%B4-x4buMf10", "title": "블라인드: 1인가구 식비 줄이는 팁", "type": "forum", "tier": "T3", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 14, "url": "https://www.clien.net/service/board/park/18019894", "title": "클리앙: 혼밥 차별 경험", "type": "forum", "tier": "T3", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 15, "url": "https://www.clien.net/service/board/park/15330324", "title": "클리앙: 자취생 식비 절약 전략", "type": "forum", "tier": "T3", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 16, "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=104602", "title": "1인가구 식사관리 앱 현황", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 17, "url": "https://www.lovefoodhatewaste.com/blog/meal-planning-one", "title": "Meal Planning for One", "type": "article", "tier": "T2", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 18, "url": "https://www.trainwell.net/blog/avoid-meal-prep-burnout", "title": "Avoid Meal Prep Burnout", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 19, "url": "https://medium.com/@jacisoulkis/i-hate-meal-prepping-and-im-tired-of-pretending-it-doesn-t-suck-6ae5c1ea5319", "title": "I Hate Meal Prepping", "type": "article", "tier": "T3", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 20, "url": "https://www.foodnews.news/news/article.html?no=1344924", "title": "배민 한그릇 1인분 메뉴 강화", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 21, "url": "https://www.garagegymreviews.com/best-meal-delivery-service-for-singles", "title": "Best Meal Delivery Service for Singles", "type": "review", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 22, "url": "https://boards.weddingbee.com/topic/how-much-would-you-pay-to-have-someone-cook-your-meals-each-week/", "title": "WTP for Meal Prep Service", "type": "forum", "tier": "T3", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 23, "url": "https://www.withbuyer.com/news/articleView.html?idxno=21481", "title": "밀키트 가격/품질 분석", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 24, "url": "https://blog.opensurvey.co.kr/trendreport/youth-soloeconomy-2025/", "title": "청년 1인가구 트렌드 2025 - 오픈서베이", "type": "report", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 25, "url": "https://news.mt.co.kr/mtview.php?no=2022070614521115498", "title": "귀찮아 밥 거른다 서울 1인가구 - 머니투데이", "type": "article", "tier": "T2", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 26, "url": "https://www.unicornfactory.co.kr/article/2026021316172476103", "title": "요즘 뜨는 다이어트 스타트업 앱 - 유니콘팩토리", "type": "article", "tier": "T2", "published": "2026.02", "accessed": "2026-03-03" },
+    { "id": 27, "url": "https://blog.nasmedia.co.kr/entry/2601-lifestyletrend-eat", "title": "2026 혼웰식 트렌드 - 나스미디어", "type": "article", "tier": "T2", "published": "2026", "accessed": "2026-03-03" },
+    { "id": 28, "url": "https://www.tandanji.me/", "title": "탄단지박스 구독 서비스", "type": "review", "tier": "T2", "published": "불명", "accessed": "2026-03-03" },
+    { "id": 29, "url": "https://tracxn.com/d/companies/hellofresh/__6Sz4mCoqD_LALvi1RL3is1YtB3f2eGhUx7F8yjDnwsI", "title": "HelloFresh Company Profile - Tracxn", "type": "report", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 30, "url": "https://www.foodicon.co.kr/news/articleView.html?idxno=11912", "title": "밀키트 시장 전망 하향 - 푸드아이콘", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 31, "url": "https://meatinsight.co.kr/bbs/board.php?bo_table=w3_1&wr_id=30", "title": "밀키트 51% 나트륨 초과 - 미트인사이트", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 32, "url": "https://www.towardshealthcare.com/insights/diet-and-nutrition-apps-market-sizing", "title": "Diet & Nutrition Apps Market | CAGR 16.64%", "type": "report", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 33, "url": "https://www.getsauce.com/post/2025-restaurant-trend-solo-dining-multiplying-profits", "title": "2025 Restaurant Trend: Solo Dining", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 34, "url": "https://kateeskuri.substack.com/p/meal-prep-for-people-who-hate-meal", "title": "Meal Prep for People Who Hate Meal Prepping", "type": "article", "tier": "T3", "published": "2024", "accessed": "2026-03-03" },
+    { "id": 35, "url": "https://workweeklunch.com/meal-prep-for-one/", "title": "Meal Prep for One Guide", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 36, "url": "https://conservefood.org/2025/07/02/6-meal-planning-recipes-apps-to-simplify-cooking-and-cut-food-waste/", "title": "Meal Planning Apps to Cut Food Waste", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 37, "url": "https://producthunt.com/posts/meals-app", "title": "Meals App - Product Hunt", "type": "review", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 38, "url": "https://www.statista.com/outlook/hmo/digital-health/digital-fitness-well-being/health-wellness-coaching/nutrition-apps/worldwide", "title": "Statista: Nutrition Apps Worldwide Market Forecast", "type": "report", "tier": "T1", "published": "2026", "accessed": "2026-03-03" },
+    { "id": 39, "url": "https://www.kostat.go.kr/board.es?mid=a10301010000&bid=10820&tag=&act=view&list_no=442130", "title": "통계청: 2025 통계로 보는 1인가구 (804.5만, 36.1%)", "type": "report", "tier": "T1", "published": "2025.12", "accessed": "2026-03-03" },
+    { "id": 40, "url": "https://www.mckinsey.com/industries/retail/our-insights/what-us-consumers-want-from-restaurants-in-2026", "title": "McKinsey: Top Restaurant Industry Trends 2026", "type": "report", "tier": "T1", "published": "2026", "accessed": "2026-03-03" },
+    { "id": 41, "url": "https://www.atfis.or.kr/home/board/FB0027.do?act=read&bpoId=4964&bcaId=0&subSkinYn=N&pageIndex=1", "title": "aT FIS: 2024 가공식품 세분시장 현황 - 간편식", "type": "report", "tier": "T1", "published": "2025.02", "accessed": "2026-03-03" },
+    { "id": 42, "url": "https://www.pressian.com/pages/articles/2025051313100479289", "title": "프레시안: 진화하는 간편식 시장 (유로모니터 인용: HMR 5.3조→7조원)", "type": "article", "tier": "T2", "published": "2025", "accessed": "2026-03-03" },
+    { "id": 43, "url": "https://www.axios.com/2026/02/07/solo-dining-self-care-fast-food", "title": "Axios: Solo Dining Is Surging (29% 주1회+ 혼밥)", "type": "article", "tier": "T2", "published": "2026.02", "accessed": "2026-03-03" },
+    { "id": 44, "url": "https://www.bain.com/insights/online-grocery-strategy/", "title": "Bain: Online Grocery Strategy (침투율 11% 전망)", "type": "report", "tier": "T2", "published": "2024", "accessed": "2026-03-03" }
   ],
+
   "methodology": {
     "approach": "5-agent parallel research pipeline (Trend Scanner + Community Analyst → Deep Researcher + Korea Specialist → Strategist)",
     "search_count": 25,
-    "sources_evaluated": 37,
+    "sources_evaluated": 44,
     "date_range": "2024-2026",
-    "limitations": [
-      "AI 검색 기반 — 유료 리포트(Gartner, Forrester, Euromonitor) 미포함",
-      "정량 데이터는 공개 출처 한정 — 실제 TAM/SAM은 변동 가능",
-      "WTP 증거 다수가 포럼 의향 수준(T3) — 실제 결제 전환율 베타 검증 필요",
-      "중장년 1인 가구 데이터 부족 — 별도 정성 인터뷰 필요"
-    ]
+    "limitations": ["AI 검색 기반 — 유료 리포트(Gartner, Forrester, Euromonitor) 미포함", "정량 데이터는 공개 출처 한정 — 실제 TAM/SAM은 변동 가능", "WTP 증거 다수가 포럼 의향 수준(T3) — 실제 결제 전환율 베타 검증 필요", "중장년 1인 가구 데이터 부족 — 별도 정성 인터뷰 필요"]
   },
+
   "market_dynamics": {
     "growth_drivers": [
-      {
-        "factor": "한국 1인 가구 구조적 증가 (2026년 836만, 전체 35.5%)",
-        "impact": "높음",
-        "evidence": "식품외식경제 [5]"
-      },
-      {
-        "factor": "AI 식사 계획 앱 시장 CAGR 28.1% (2024-2034)",
-        "impact": "높음",
-        "evidence": "Market.us [3]"
-      },
-      {
-        "factor": "고물가 → 배달 대비 직접조리 수요 상승",
-        "impact": "높음",
-        "evidence": "식품외식경제 [5]"
-      },
-      {
-        "factor": "온라인 신선식품 구매 증가 (채소 +20.9%, 축산 +12%)",
-        "impact": "중간",
-        "evidence": "식품음료신문 [4]"
-      },
-      {
-        "factor": "혼밥 레스토랑 예약 22% 급증 (2025 Q3)",
-        "impact": "중간",
-        "evidence": "GetSauce [33]"
-      }
+      { "factor": "한국 1인 가구 구조적 증가 (2024년 804.5만, 전체 36.1%)", "impact": "높음", "evidence": "통계청 [39]" },
+      { "factor": "AI 식사 계획 앱 시장 CAGR 28.1% (2024-2034)", "impact": "높음", "evidence": "Market.us [3]" },
+      { "factor": "고물가 → 배달 대비 직접조리 수요 상승", "impact": "높음", "evidence": "식품외식경제 [5]" },
+      { "factor": "온라인 신선식품 구매 증가 (채소 +20.9%, 축산 +12%)", "impact": "중간", "evidence": "식품음료신문 [4]" },
+      { "factor": "혼밥 레스토랑 예약 22% 급증 (2025 Q3)", "impact": "중간", "evidence": "GetSauce [33]" }
     ],
     "headwinds": [
-      {
-        "factor": "밀키트 시장 전반 성장 정체 (7,200억→4,000억 하향)",
-        "impact": "높음",
-        "evidence": "푸드아이콘 [30]"
-      },
-      {
-        "factor": "밀키트 월간 이탈률 8-10%+ 구독 피로",
-        "impact": "높음",
-        "evidence": "Medium [19]"
-      },
-      {
-        "factor": "앱 시장 무료화 경쟁 심화",
-        "impact": "중간",
-        "evidence": "자체 분석"
-      }
+      { "factor": "밀키트 시장 전반 성장 정체 (7,200억→4,000억 하향)", "impact": "높음", "evidence": "푸드아이콘 [30]" },
+      { "factor": "밀키트 월간 이탈률 8-10%+ 구독 피로", "impact": "높음", "evidence": "Medium [19]" },
+      { "factor": "앱 시장 무료화 경쟁 심화", "impact": "중간", "evidence": "자체 분석" }
     ],
     "regulatory": [
-      {
-        "factor": "식약처 나트륨 표시 규제 강화",
-        "region": "한국",
-        "impact": "밀키트 51% 나트륨 초과 → 레시피 앱은 오히려 기회",
-        "evidence": "미트인사이트 [31]"
-      }
+      { "factor": "식약처 나트륨 표시 규제 강화", "region": "한국", "impact": "밀키트 51% 나트륨 초과 → 레시피 앱은 오히려 기회", "evidence": "미트인사이트 [31]" }
     ]
   },
+
   "segmentation": [
-    {
-      "segment": "2030 직장인 1인 가구",
-      "size": "200-250만",
-      "characteristics": "시간 부족, 배달 의존, 식비 민감, 앱 사용 익숙",
-      "wtp": "월 5,000-10,000원",
-      "current_solution": "배달앱 + 간편식"
-    },
-    {
-      "segment": "건강 관심 1인 가구",
-      "size": "50-80만",
-      "characteristics": "영양 추적, 헬스 연동 관심, Meal Prep 시도 경험",
-      "wtp": "월 10,000-15,000원",
-      "current_solution": "YAZIO + Mealime 병용 (불완전)"
-    },
-    {
-      "segment": "절약형 1인 가구",
-      "size": "150-200만",
-      "characteristics": "식비 통제 최우선, 직접 조리 선호",
-      "wtp": "월 3,000-5,000원",
-      "current_solution": "유튜브 레시피 + 수동 메모"
-    },
-    {
-      "segment": "중장년 1인 가구",
-      "size": "150만+",
-      "characteristics": "건강 식단 중요, 앱 친숙도 낮음",
-      "wtp": "낮음 (서비스형 선호)",
-      "current_solution": "반찬 배달 구독"
-    }
+    { "segment": "2030 직장인 1인 가구", "size": "200-250만", "characteristics": "시간 부족, 배달 의존, 식비 민감, 앱 사용 익숙", "wtp": "월 5,000-10,000원", "current_solution": "배달앱 + 간편식" },
+    { "segment": "건강 관심 1인 가구", "size": "50-80만", "characteristics": "영양 추적, 헬스 연동 관심, Meal Prep 시도 경험", "wtp": "월 10,000-15,000원", "current_solution": "YAZIO + Mealime 병용 (불완전)" },
+    { "segment": "절약형 1인 가구", "size": "150-200만", "characteristics": "식비 통제 최우선, 직접 조리 선호", "wtp": "월 3,000-5,000원", "current_solution": "유튜브 레시피 + 수동 메모" },
+    { "segment": "중장년 1인 가구", "size": "150만+", "characteristics": "건강 식단 중요, 앱 친숙도 낮음", "wtp": "낮음 (서비스형 선호)", "current_solution": "반찬 배달 구독" }
   ],
+
   "value_chain": {
-    "stages": [
-      "식재료 생산·유통",
-      "레시피·메뉴 설계",
-      "장보기·구매",
-      "조리 실행",
-      "식사·기록",
-      "피드백·재계획"
-    ],
+    "stages": ["식재료 생산·유통", "레시피·메뉴 설계", "장보기·구매", "조리 실행", "식사·기록", "피드백·재계획"],
     "opportunity_stage": "레시피·메뉴 설계 + 피드백·재계획",
     "rationale": "레시피 설계(1인분 AI 큐레이션, 한식 반찬 조합 최적화, leftover linkage)와 재계획(자동 로테이션)이 가장 높은 기회. 진입 비용 낮고 기존 플레이어 공백 명확. 물류(콜드체인·배송) 직접 운영은 단위 경제 불리(이탈률 8-10%, 고정비 과중)로 미진입."
   },
+
   "risk_matrix": [
-    {
-      "risk": "무료 유튜브/네이버 대안과의 경쟁 — 전환 실패",
-      "probability": "높음",
-      "impact": "높음",
-      "mitigation": "유튜브 제공 불가 '재료 기반 역방향 추천 + 잔재료 linkage' 핵심 차별점으로 포지셔닝"
-    },
-    {
-      "risk": "재료 수동 입력 허들로 인한 초기 이탈",
-      "probability": "높음",
-      "impact": "높음",
-      "mitigation": "온보딩 '오늘 쓸 재료 5개만' 제한. 첫 추천 30초 이내 UX. 바코드 스캔 Phase 2"
-    },
-    {
-      "risk": "한식 레시피 DB 저작권 분쟁",
-      "probability": "중간",
-      "impact": "높음",
-      "mitigation": "직접 창작 레시피 또는 CC 라이선스 한정. 크롤링 금지. 크리에이터 파트너십"
-    },
-    {
-      "risk": "한식 1인분 환산 품질 문제 (염도-양 비선형)",
-      "probability": "중간",
-      "impact": "높음",
-      "mitigation": "MVP 레시피 300개 수동 검수. 알고리즘 자동화 전 정확도 기준 수립"
-    },
-    {
-      "risk": "구독 이탈률 높음 (유사 앱 8-10%/월)",
-      "probability": "높음",
-      "impact": "중간",
-      "mitigation": "주간 자동 리포트(절약 금액), 계절 DB 업데이트, 연간 결제 할인"
-    },
-    {
-      "risk": "WTP 증거 대부분 '의향' 수준 — 실제 결제 전환 미달",
-      "probability": "중간",
-      "impact": "높음",
-      "mitigation": "베타 단계 유료 결제 테스트 의무화. 가격 A/B 테스트 3구간"
-    },
-    {
-      "risk": "밀키트 시장 성장 정체 → 식사 관리 앱 관심 하락",
-      "probability": "낮음",
-      "impact": "중간",
-      "mitigation": "밀키트 하락은 직접조리+앱 수요 증가로 연결. '밀키트 대안' 아닌 '직접조리 효율화' 포지셔닝"
-    },
-    {
-      "risk": "대형 플레이어(삼성, 네이버) 유사 기능 출시",
-      "probability": "낮음",
-      "impact": "높음",
-      "mitigation": "한식 1인 가구 특화 심화. 대형사는 대중 타겟 — 1인 전용 UX 틈새 방어"
-    }
+    { "risk": "무료 유튜브/네이버 대안과의 경쟁 — 전환 실패", "probability": "높음", "impact": "높음", "mitigation": "유튜브 제공 불가 '재료 기반 역방향 추천 + 잔재료 linkage' 핵심 차별점으로 포지셔닝" },
+    { "risk": "재료 수동 입력 허들로 인한 초기 이탈", "probability": "높음", "impact": "높음", "mitigation": "온보딩 '오늘 쓸 재료 5개만' 제한. 첫 추천 30초 이내 UX. 바코드 스캔 Phase 2" },
+    { "risk": "한식 레시피 DB 저작권 분쟁", "probability": "중간", "impact": "높음", "mitigation": "직접 창작 레시피 또는 CC 라이선스 한정. 크롤링 금지. 크리에이터 파트너십" },
+    { "risk": "한식 1인분 환산 품질 문제 (염도-양 비선형)", "probability": "중간", "impact": "높음", "mitigation": "MVP 레시피 300개 수동 검수. 알고리즘 자동화 전 정확도 기준 수립" },
+    { "risk": "구독 이탈률 높음 (유사 앱 8-10%/월)", "probability": "높음", "impact": "중간", "mitigation": "주간 자동 리포트(절약 금액), 계절 DB 업데이트, 연간 결제 할인" },
+    { "risk": "WTP 증거 대부분 '의향' 수준 — 실제 결제 전환 미달", "probability": "중간", "impact": "높음", "mitigation": "베타 단계 유료 결제 테스트 의무화. 가격 A/B 테스트 3구간" },
+    { "risk": "밀키트 시장 성장 정체 → 식사 관리 앱 관심 하락", "probability": "낮음", "impact": "중간", "mitigation": "밀키트 하락은 직접조리+앱 수요 증가로 연결. '밀키트 대안' 아닌 '직접조리 효율화' 포지셔닝" },
+    { "risk": "대형 플레이어(삼성, 네이버) 유사 기능 출시", "probability": "낮음", "impact": "높음", "mitigation": "한식 1인 가구 특화 심화. 대형사는 대중 타겟 — 1인 전용 UX 틈새 방어" }
   ]
-};
+}
+;
 
 // ===== THEME =====
 function toggleTheme() {

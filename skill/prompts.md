@@ -91,27 +91,32 @@ WebSearch를 3-5회 수행하세요:
 6. (선택) "[발견된 제품명] review negative OR limitation"
 7. (선택) "AlternativeTo [주요 제품명]"
 
-### B. 시장 규모 + 경쟁 환경 (필수 2-3회):
+### B. 시장 규모 + 경쟁 환경 (필수 3-4회):
 
-8. "{TOPIC_EN} market size 2025 2026 forecast report"
-9. "{TOPIC_EN} TAM SAM total addressable market"
-10. "{TOPIC_KR} 시장 규모 OR 시장 전망 2025 2026"
+8. "site:mckinsey.com OR site:bain.com OR site:bcg.com {TOPIC_EN} market trend 2024 2025 2026"
+9. "{TOPIC_EN} market size 2024 2025 site:statista.com OR site:oecd.org OR site:worldbank.org"
+10. "{TOPIC_KR} 시장 규모 2024 2025 통계청 OR 산업연구원 OR KIET OR KOTRA"
+11. "{TOPIC_EN} TAM SAM total addressable market report 2024 2025 2026"
 
 ### C. Consulting 전용 (DEPTH=consulting일 때만, 추가 3-5회):
 
-11. "{TOPIC_EN} growth drivers trends 2025 2026"
-12. "{TOPIC_EN} regulation risk challenge"
-13. "{TOPIC_EN} customer segments market breakdown"
-14. "{TOPIC_EN} value chain industry structure"
-15. (선택) "[주요 경쟁사] revenue users funding"
+12. "{TOPIC_EN} growth drivers trends 2025 2026"
+13. "{TOPIC_EN} regulation risk challenge"
+14. "{TOPIC_EN} customer segments market breakdown"
+15. "{TOPIC_EN} value chain industry structure"
+16. (선택) "[주요 경쟁사] revenue users funding"
 
 **출처 규칙:**
 - {SOURCE_MODE}=url_per_need: 각 니즈별 URL 1-3개 + TAM 출처 명시
 - {SOURCE_MODE}=inline_citation: **모든 숫자/통계에 [Source: URL] 필수.** 출처 없으면 "추정:" 표시.
   - 출처 Tier 분류 필수: `[Source: URL] (T1)` 형식
-  - T1 (Authoritative): 정부 통계, 시장 리포트, 학술 논문, 기업 공시
-  - T2 (Industry): G2, Capterra, Product Hunt, 뉴스, 업계 블로그
+  - T1 (Authoritative): 정부 통계(통계청, OECD, World Bank), MBB 공개 리포트(McKinsey, Bain, BCG), 학술 논문, 기업 공시, Statista 공개 차트. **전문이 공개된 출처만 T1. 유료 보고서 랜딩 페이지 요약 수치는 T2.**
+  - T2 (Industry): G2, Capterra, Product Hunt, 뉴스, 업계 블로그, 유료 리포트 랜딩 페이지(Grand View Research, Mordor Intelligence 등의 공개 요약)
   - T3 (Community): Reddit, HN, Blind, Twitter/X, 커뮤니티
+- **출처 최신성 규칙:**
+  - 시장 규모·통계 데이터: **2024년 이후 자료만 인용.** 2023년 자료는 최신 대안이 없을 때만 허용하되 "(2023)" 표시.
+  - 2022년 이하 자료: **인용 금지.** MBB 보고서라도 3년 이상 경과 시 제외.
+  - **발행일 표시 필수:** 모든 출처에 `[Source: URL] (T1, 2025)` 형식으로 발행 연도 병기. 발행일 불명 시 "(발행일 불명)" 표시.
 
 에이전트 정의 파일의 출력 형식을 엄수하세요.
 

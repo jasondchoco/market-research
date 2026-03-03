@@ -57,7 +57,7 @@ open demo-sample/report.html
 | **Gap Reality System** | 🟢 Real Gap / 🟡 Partial Gap / 🔴 No Gap — 경쟁 검증 기반 기회 판정 |
 | **Opportunity Scorecard** | 시장성, 긴급성, 경쟁강도, 진입장벽, WTP — 50점 만점 정량 평가 |
 | **Interactive HTML Report** | 탭 기반 UI, 다크/라이트 테마, 반응형 디자인, SVG 레이더 차트 |
-| **3-Tier Source System** | T1 (공식 리포트) / T2 (업계) / T3 (커뮤니티) — 출처 신뢰도 분류 |
+| **3-Tier Source System** | T1 (정부 통계/MBB) / T2 (업계) / T3 (커뮤니티) — 출처 신뢰도 분류 + 최신성 규칙 + 발행일 표시 |
 | **Locale Support** | 한국 시장 전문 분석 + 커스텀 로케일 지원 |
 | **Caching** | 이전 조사 결과 캐싱, Phase 1 스킵으로 업데이트 조사 가능 |
 
@@ -175,9 +175,11 @@ Total = Market + Urgency + (10 - Competition) + (10 - Barrier) + WTP
 
 | Tier | Label | Examples | Badge |
 |------|-------|----------|-------|
-| **T1** | Authoritative | 정부 통계, Gartner, Statista, 학술 논문 | 🔵 Blue |
-| **T2** | Industry | G2, Capterra, Product Hunt, TechCrunch | 🟣 Purple |
+| **T1** | Authoritative | 정부 통계(통계청, OECD), MBB 공개 리포트(McKinsey, Bain, BCG), Statista 공개 차트, 학술 논문, 기업 공시 | 🔵 Blue |
+| **T2** | Industry | G2, Capterra, Product Hunt, TechCrunch, 유료 리포트 랜딩 페이지(Grand View Research 등) | 🟣 Purple |
 | **T3** | Community | Reddit, Hacker News, Blind, Twitter/X | ⚪ Gray |
+
+> **최신성 규칙:** 시장 규모/통계 데이터는 2024년 이후 자료만 인용. 2022년 이하 자료는 MBB라도 인용 금지. 모든 출처에 발행 연도 병기.
 
 ---
 
